@@ -1,0 +1,27 @@
+{
+  "name": "Circuit SDK example apps",
+  "version": "0.0.1",
+  "authors": [
+    "Roger Urscheler <roger.urscheler@unify.com>"
+  ],
+  "description": "Reference app showcasing Circuit Polymer Components",
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#1.0.2",
+    "paper-elements": "PolymerElements/paper-elements#1.0.2",
+    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "neon-elements": "PolymerElements/neon-elements#1.0.0",
+    "moment": "~2.10.3",
+    "app-router": "~2.6.1",
+    "pushstate-anchor": "~0.3.2",
+    "circuit-chat": "yourcircuit/circuit-chat",
+    "webrtc-getusermedia": "yourcircuit/webrtc-getusermedia"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

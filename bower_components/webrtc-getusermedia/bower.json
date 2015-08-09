@@ -1,0 +1,28 @@
+{
+  "name": "webrtc-getusermedia",
+  "version": "0.0.1",
+  "authors": [
+    "Roger Urscheler <roger.urscheler@unify.com>"
+  ],
+  "description": "Polymer element capture audio/video using HTML5 getUserMadia.",
+  "keywords": [
+    "Circuit",
+    "SDK",
+    "polymer",
+    "API"
+  ],
+  "main": "webrtc-getusermedia.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/yourcircuit/webrtc-getusermedia/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}

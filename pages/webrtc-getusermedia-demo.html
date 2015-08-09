@@ -1,0 +1,65 @@
+<!--
+@license
+Copyright (c) 2015 Unify. All rights reserved.
+-->
+
+<dom-module id="webrtc-getusermedia-demo">
+
+  <style is="custom-style">
+  section {
+    padding-bottom: 20px;
+  }
+  </style>
+
+  <template>
+    <h2>Polymer element: <code>webrtc-getusermedia</code></h2>
+    <p>The <code>webrtc-getusermedia</code> captures audio and video using HTML5 getUserMedia.</p>
+
+    <a href="https://github.com/yourcircuit/webrtc-getusermedia" target="_blank">https://github.com/yourcircuit/webrtc-getusermedia</a>
+
+    <h3>Live example:</h3>
+    <webrtc-getusermedia id="recorder"></webrtc-getusermedia>
+
+    <section>
+      <button id="start">Start capturing</button>
+      <button id="stop">Stop capturing</button>
+    </section>
+    <div><video id="video" autoplay style="display:none"></video></div>
+    <audio id="audio" autoplay></audio>
+  </template>
+
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'webrtc-getusermedia-demo',
+    ready: function () {
+      var recorder = this.$.recorder;
+      var start = this.$.start;
+      var stop = this.$.stop;
+      var video = this.$.video;
+      
+      // Set contraints. See http://w3c.github.io/mediacapture-main/getusermedia.html#mediastreamconstraints
+      recorder.constraints = { audio: false, video: true };
+      
+      recorder.addEventListener('media-update', function (evt) {
+          video.src = evt.detail.videoUrl;
+          audio.src = evt.detail.audioUrl;
+          !!evt.detail.videoUrl ? video.style.display = '' : video.style.display = 'none';
+      });
+
+      recorder.addEventListener('error', function (evt) {
+        video.src = '';
+        video.style.display = 'none';
+        console.log('error:', evt);
+      });
+      
+      start.addEventListener('click', function (evt) {
+        recorder.start();
+      });
+      stop.addEventListener('click', function (evt) {
+        recorder.stop();
+      });
+    }
+  });
+</script>

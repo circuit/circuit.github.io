@@ -1,0 +1,114 @@
+<!--
+@license
+Copyright (c) 2015 Unify. All rights reserved.
+-->
+
+<!-- Paper elements -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<!--
+Dialog element used internally by circuit-api to ask user for credentials.
+
+Example:
+
+    <circuit-login-dialog id="dialog" email="{{email}}" modal="true"></circuit-login-dialog>
+
+@demo
+-->
+<dom-module id="circuit-login-dialog">
+
+  <link rel="import" type="css" href="../paper-dialog-behavior/paper-dialog-common.css">
+  
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  
+  <template>
+    <h2>Sign in to your Sandbox account</h2>
+    <div class="error">{{error}}</div>
+    <div>
+      <paper-input id="email" type="email" label="Email" value="[[email]]"></paper-input>
+      <paper-input id="password" type="password" label="Password"></paper-input>
+    </div>
+    <div class="buttons">
+      <paper-button dialog-confirm on-click="_login">Sign In</paper-button>
+    </div>
+    <div>
+      New to <a href="https://www.circuit.com/">Circuit</a>? <a href="https://www.circuit.com/web/developers/registration">Register</a> for a <a href="https://www.circuit.com/web/developers/">developer</a> account.
+    </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+(function() {
+
+  Polymer({
+
+    is: 'circuit-login-dialog',
+    
+    properties: {
+
+      /**
+       * The default email to show in the credentials popup if not authenticated yet.
+       * If not specified localstorage is used to remember the last login.
+       */
+      email: String,
+
+      /**
+       * Error string for failed logon. Shown in popup already, but also readable
+       * by application using this element.
+       */
+      error: {
+        type: String,
+        value: ''
+      }
+    },
+
+    behaviors: [
+      Polymer.PaperDialogBehavior,
+      Polymer.NeonAnimationRunnerBehavior
+    ],
+
+    listeners: {
+      'neon-animation-finish': '_onNeonAnimationFinish'  
+    },
+    
+    _login: function () {
+      this.fire('login-request', {email: this.$.email.value, password: this.$.password.value});
+    },
+
+    _renderOpened: function() {
+      if (this.withBackdrop) {
+        this.backdropElement.open();
+      }
+      this.playAnimation('entry');
+    },
+
+    _renderClosed: function() {
+      if (this.withBackdrop) {
+        this.backdropElement.close();
+      }
+      this.playAnimation('exit');
+    },
+
+    _onNeonAnimationFinish: function() {
+      if (this.opened) {
+        this._finishRenderOpened();
+      } else {
+        this._finishRenderClosed();
+      }
+    }
+
+  });
+
+})();
+
+</script>

@@ -1,0 +1,129 @@
+<!--
+@license
+Copyright (c) 2015 Unify. All rights reserved.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Polymer element for a simple chat module that uses Circuit PaaS.
+
+Example:
+
+    <webrtc-getusermedia id="recorder"></webrtc-getusermedia>
+
+@demo
+-->
+<dom-module id="webrtc-getusermedia">
+
+<script>
+  Polymer({
+
+    is: 'webrtc-getusermedia',
+
+    properties: {
+
+      /**
+       * `constraints` for the media to capture.
+       * See See http://w3c.github.io/mediacapture-main/getusermedia.html#mediastreamconstraints for details.
+       */
+      constraints: {
+        type: Object
+      },
+
+      /**
+       * `stream` contains the media tracks. Simplest option is though to use
+       * the audioUrl and videoUrl in the media-update event.
+       */
+      stream: {
+        type: Object
+      }
+    },
+      
+    /**
+     * Start capturing according to the constraints.
+     */
+    start: function () {
+      if (this.constraints.audio) {
+        if (typeof this.constraints.audio === 'boolean') {
+          this.constraints.audio = {};
+        }
+        this.constraints.audio.optional = [
+          {googEchoCancellation:true},
+          {googEchoCancellation2:true},
+          {googAutoGainControl:false},
+          {googAutoGainControl2:false},
+          {googNoiseSuppression:true},
+          {googNoiseSuppression2:true},
+          {googHighpassFilter:true},
+          {chromeRenderToAssociatedSink:true},
+          {googDucking:false}
+        ];
+      }
+
+      if (this.constraints.video) {
+        if (typeof this.constraints.video === 'boolean') {
+          this.constraints.video = {};
+        }
+        this.constraints.video.mandatory = this.constraints.video.mandatory || {};
+        this.constraints.video.mandatory.googLeakyBucket = this.constraints.video.mandatory.googLeakyBucket || true;
+        this.constraints.video.mandatory.minAspectRatio = this.constraints.video.mandatory.minAspectRatio || 1.32;
+        this.constraints.video.mandatory.maxAspectRatio = this.constraints.video.mandatory.maxAspectRatio || 1.34;
+        this.constraints.video.optional = [
+          {googNoiseReduction: true}
+        ];
+      }  
+      
+      navigator.webkitGetUserMedia(this.constraints,
+        function(stream) {
+          this.stream = stream;
+          
+          var data = {
+            videoUrl: '',
+            audioUrl: ''
+          };
+          if (stream.getVideoTracks().length) {
+            data.videoUrl = stream.getVideoTracks().length ? window.URL.createObjectURL(stream) : ''; // contains audio
+          } else if (stream.getAudioTracks().length) {
+            data.audioUrl = stream.getAudioTracks().length ? window.URL.createObjectURL(stream) : '';
+          }
+          this.fire('media-update', data);
+        }.bind(this),
+        function(err) {
+            this.fire('error', err);
+        }.bind(this)
+      );         
+    },
+
+    /**
+     * Stops capturing.
+     */
+    stop: function () {
+      this.stream && this.stream.stop();
+      this.fire('media-update', {
+        videoUrl: '',
+        audioUrl: ''
+      }); 
+    }
+
+    // Events
+
+    /**
+     * The `media-update` event is fired whenever the audioUrl or videoUrl changes.
+     *
+     * @event media-update
+     * @detail {{videoUrl: String, audioUrl: String}}
+     */
+
+    /**
+     * The `error` event is fired when an error occurs.
+     *
+     * @event error
+     * @detail {{Object}}
+     */
+
+  });
+
+</script>
+
+</dom-module>

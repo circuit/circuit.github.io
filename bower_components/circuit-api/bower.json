@@ -1,0 +1,36 @@
+{
+  "name": "circuit-api",
+  "version": "0.0.1",
+  "authors": [
+    "Roger Urscheler <roger.urscheler@unify.com>"
+  ],
+  "description": "Polymer element to access the Circuit JS SDK. Prompts for credentials if needed.",
+  "keywords": [
+    "Circuit",
+    "SDK",
+    "polymer",
+    "API"
+  ],
+  "main": "circuit-api.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/yourcircuit/circuit-api/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#~1.0.10",
+    "iron-localstorage": "PolymerElements/iron-localstorage#~1.0.4",
+    "neon-animation": "PolymerElements/neon-animation#~1.0.6",
+    "paper-dialog": "PolymerElements/paper-dialog#~1.0.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^1.0.0",
+    "webcomponentsjs": "0.7.9"
+  }
+}
