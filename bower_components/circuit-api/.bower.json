@@ -32,11 +32,11 @@
     "polymer": "^1.0.0",
     "webcomponentsjs": "0.7.9"
   },
-  "_release": "56d73a4712",
+  "_release": "999b555426",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "56d73a4712b9a05df74ec1106ff11033c0a1ba7c"
+    "commit": "999b555426704433e4c18ada99fd6bb8a6505cf3"
   },
   "_source": "git://github.com/yourcircuit/circuit-api.git",
   "_target": "*",

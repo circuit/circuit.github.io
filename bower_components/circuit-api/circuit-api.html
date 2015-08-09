@@ -135,7 +135,7 @@ Example:
         var originalListener = this.addEventListener;
         this.addEventListener = function (type, cb) {
           if (this._eventTypes.indexOf(type) !== -1) {
-            initialState && _client.addEventListener(type, cb);
+            _client.addEventListener(type, cb);
           } else {
             originalListener(type, cb);
           }
@@ -146,7 +146,7 @@ Example:
           this.logon(credentials.email, credentials.password);
         }.bind(this));
         
-        initialState && _client.addEventListener('registrationStateChanged', function (evt) {
+        _client.addEventListener('registrationStateChanged', function (evt) {
           _state = evt.state;
           if (_state === 'Disconnected') {
             _client = null;
