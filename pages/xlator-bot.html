@@ -10,7 +10,6 @@ Copyright (c) 2015 Unify. All rights reserved.
   </style>
 
   <template>
-    <h2>Example for the Circuit Node SDK</h2>
     <p>This example application on <a href="https://github.com/yourcircuit/xlator-bot" target="_blank">github</a> shows how to receive Circuit Conversation updates and how to send Circuit conversation items with the circuit node SDK</p>
   </template>
 
@@ -18,6 +17,10 @@ Copyright (c) 2015 Unify. All rights reserved.
 
 <script>
   Polymer({
-    is: 'xlator-bot'
+    is: 'xlator-bot',
+
+    ready: function () {
+      app.pageTitle = 'NodeJS Translator Bot example';
+    }
   });
 </script>

@@ -26,7 +26,6 @@ Copyright (c) 2015 Unify. All rights reserved.
   </style>
 
   <template>
-    <h2>Polymer element: <code>circuit-chat</code></h2>
     <p>The <code>circuit-chat</code> element is a simple chat module that can easily be embedded into any website. The conversation ID to use can be passed to the element, or assigned via JavaScript.</p>
 
     <a href="https://github.com/yourcircuit/circuit-chat" target="_blank">https://github.com/yourcircuit/circuit-chat</a>
@@ -52,7 +51,7 @@ Copyright (c) 2015 Unify. All rights reserved.
     is: 'circuit-chat-demo',
 
     ready: function () {
-      console.log('loaded circuit-chat-demo');
+      app.pageTitle = 'Polymer element: circuit-chat';
 
       this.$.conversationId.addEventListener('input', function (evt) {
         if (evt.target.value.length >= 36) {

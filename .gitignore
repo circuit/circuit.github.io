@@ -1,3 +1,6 @@
-node_modules
+.DS_Store
+bower_components
 dist
+node_modules
+vulcanized*
 .tmp

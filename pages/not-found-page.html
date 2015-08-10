@@ -6,10 +6,23 @@ Copyright (c) 2015 Unify. All rights reserved.
 <dom-module id="not-found-page">
 
   <style is="custom-style">
-
+  li {
+    padding-bottom: 15px;
+  }
   </style>
 
   <template>
+    <p>REST or WebSockets? This is almost a religious discussion among developers. We simply support both - as one or the other makes more sense depending on the use case.</p>
+
+    <ul>
+      <li><b>The Circuit JavaScript API</b> uses WebSockets to connect to Circuit. To rapidly enhance a Web-App with multi-party voice, video, and real-time chat sessions we provide an easy to use JavaScript library. Developers can enhance or create a Web-App as illustrated on CodePen with just a few API calls. The library encapsulates real-time signaling and connectivity via WebSocket. The connected nature of the WebSocket allows the library to efficiently receive asynchronous events even when located behind a FW/NAT device. Code examples are on <a href="http://codepen.io/circuit/" target="_blank">codepen</a>.</li>
+     
+      <li><b>The Circuit Polymer Elements</b> are a set of Web Components to very easily incorporate Circuit functionality into your app. View <a href="https://www.polymer-project.org/1.0/" target="_blank">the Polymer Project</a> for more information on Polymer. The modules are available on <a href="https://github.com/yourcircuit" target="_blank">GitHub</a></li>
+     
+      <li><b>The Circuit NodeJS module</b> also uses WebSockets connectivity and provides quick integration opportunities with the rapidly growing NodeJS community. The API is identical to the JavaScript API. The Circuit NodeJS module provides quick integration opportunities with the vast number of available node modules. Code samples for the Circuit NodeJS module are on <a href="https://github.com/yourcircuit" target="_blank">GitHub</a>. See the also Circuit's Node Injection concept.</li>
+
+      <li><b><a href="https://rest.circuitsandbox.net" target="_blank">The Circuit REST API</a></b> works great for many integration scenarios across different languages and frameworks.<br>REST is the fastest way to get started for many use cases. Imagine you are scanning an ERP system for important business alerts and you would like to post these alerts to a Circuit Conversation. This can be quickly done with the REST API. There is a restricted set of REST APIs available initially.</li>     
+    </ul>
   </template>
 
 </dom-module>
@@ -18,7 +31,7 @@ Copyright (c) 2015 Unify. All rights reserved.
   Polymer({
     is: 'not-found-page',
     ready: function () {
-      console.log('loaded not-found-page');
+      app.pageTitle = 'Overview';
     }
   });
 </script>

@@ -1,0 +1,35 @@
+/*
+Copyright (c) 2015 Unify Inc. All rights reserved.
+*/
+
+.nav {
+  border-right: 1px solid #ccc;
+}
+.nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.main {
+  background-color: #eee;
+}
+
+paper-toolbar {
+  background-color: #42A5F5;
+}
+
+.content {
+  margin: 25px;
+}
+
+.nav .separator {
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.larger {
+	font-size: 22px;
+}

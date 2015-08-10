@@ -10,7 +10,6 @@ Copyright (c) 2015 Unify. All rights reserved.
   </style>
 
   <template>
-    <h2>New light-weight JS SDK</h2>
     <p>A comprehensive introduction example is hosted on <a href="http://codepen.io/circuit/pen/MwLegv" target="_blank">codepen</a> and shows login, request/response, event handling and also how to define injectors.</p>
     <p>Codepen also contains a <a href="http://codepen.io/circuit/blog/new-light-weight-js-sdk" target="_blank">blog</a> explaining the new light-weight SDK.</p>
     <p>Note: The new SDK does not support RTC (voice/video) yet.</p>
@@ -20,6 +19,10 @@ Copyright (c) 2015 Unify. All rights reserved.
 
 <script>
   Polymer({
-    is: 'js-intro'
+    is: 'js-intro',
+    
+    ready: function () {
+      app.pageTitle = 'Introduction example for the new light-weight JS SDK';
+    }
   });
 </script>

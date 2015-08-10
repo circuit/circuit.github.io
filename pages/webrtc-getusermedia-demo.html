@@ -12,7 +12,6 @@ Copyright (c) 2015 Unify. All rights reserved.
   </style>
 
   <template>
-    <h2>Polymer element: <code>webrtc-getusermedia</code></h2>
     <p>The <code>webrtc-getusermedia</code> captures audio and video using HTML5 getUserMedia.</p>
 
     <a href="https://github.com/yourcircuit/webrtc-getusermedia" target="_blank">https://github.com/yourcircuit/webrtc-getusermedia</a>
@@ -39,6 +38,8 @@ Copyright (c) 2015 Unify. All rights reserved.
       var stop = this.$.stop;
       var video = this.$.video;
       
+      app.pageTitle = 'Polymer element: webrtc-getusermedia';
+
       // Set contraints. See http://w3c.github.io/mediacapture-main/getusermedia.html#mediastreamconstraints
       recorder.constraints = { audio: false, video: true };
       
