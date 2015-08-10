@@ -7,11 +7,15 @@ Copyright (c) 2015 Unify Inc. All rights reserved.
 }
 .nav a {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-size: 22px;
 }
 
 .main {
   background-color: #eee;
+}
+.main .bottom {
+  font-size: 22px;
 }
 
 paper-toolbar {
@@ -19,7 +23,7 @@ paper-toolbar {
 }
 
 .content {
-  margin: 25px;
+  margin: 16px;
 }
 
 .nav .separator {
@@ -28,8 +32,4 @@ paper-toolbar {
   font-weight: 500;
   color: #aaa;
   border-top: 1px solid #e0e0e0;
-}
-
-.larger {
-	font-size: 22px;
 }

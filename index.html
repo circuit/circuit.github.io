@@ -33,9 +33,8 @@ Copyright (c) 2015 Unify. All rights reserved.
 
       <div class="nav" drawer>
         <!-- Nav Content -->
-        <paper-toolbar id="navheader" class="small">
-          <div class="larger">Circuit SDK Examples</div>
-          <div class="bottom"><a href="https://developers.circuit.com" target="_blank"></a></div>
+        <paper-toolbar id="navheader" class="medium">
+          <div><a href="#/">Circuit SDK Examples</a></div>
         <!--
           <div>[[user.displayName]]</div>
           <span class="flex"></span>
@@ -88,7 +87,7 @@ Copyright (c) 2015 Unify. All rights reserved.
         <!-- Main Toolbar -->
         <paper-toolbar class="medium-tall">
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-          <div class="bottom larger">[[pageTitle]]</div>
+          <div class="bottom">[[pageTitle]]</div>
         </paper-toolbar>
 
         <!-- Main Content -->
@@ -105,7 +104,7 @@ Copyright (c) 2015 Unify. All rights reserved.
             <app-route path="/node-intro" import="/pages/node-intro.html"></app-route>
             <app-route path="/xlator-bot" import="/pages/xlator-bot.html"></app-route>
 
-            <app-route path="*" import="/pages/not-found-page.html"></app-route>
+            <app-route path="*" import="/pages/default-page.html"></app-route>
           </app-router>
    
         </div>
