@@ -53,34 +53,6 @@ Copyright (c) 2015 Unify. All rights reserved.
     is: 'default-page',
     ready: function () {
       app.pageTitle = 'Overview';
-
-HTML_REGEX = /<img[^>|<]*(?:shortcut|abbr)="(\S*)"[^\/?>]*\/?>/gi;
-var mapping = {
-    ':)': 0x1F603,
-    ':D': 0x1F604,
-    ':(': 0x1F61E,
-    ':heart': 0x1F60D,
-    ';)': 0x1F609,
-    ':awesome': 0x1F604,
-    ':angry': 0x1F620,
-    ':zzz': 0x1F62A,
-    ':O': 0x1F632,
-    ';(': 0x1F622
-}
-
-
-function convert(str, p1, offset, s) {
-    var code = mapping[p1];
-    return code ? String.fromCodePoint(mapping[p1]) : '';
-}
-
-var str = 'big <img class="emoticon-icon smile" abbr=":D"/> bottomline <img class="emoticon-icon smile" abbr=":bottomline"/> happy <img class="emoticon-icon smile" abbr=":)"/> angry <img class="emoticon-icon smile" abbr=":angry"/> after2';
-var matches = str.replace(HTML_REGEX, convert);
-
-this.$.test.innerHTML =matches;
-
-
-
     }
   });
 </script>
