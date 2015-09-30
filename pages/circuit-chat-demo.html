@@ -5,6 +5,8 @@ Copyright (c) 2015 Unify. All rights reserved.
 
 <dom-module id="circuit-chat-demo">
 
+  <script type="text/javascript" src="https://circuitsandbox.net/circuit.js"></script>
+
   <style is="custom-style">
     circuit-chat {
       width: 200px;
@@ -30,18 +32,18 @@ Copyright (c) 2015 Unify. All rights reserved.
 
     <a href="https://github.com/yourcircuit/circuit-chat" target="_blank">https://github.com/yourcircuit/circuit-chat</a>
 
-    <h3>Dependencies:</h3>
-    <a href="https://github.com/yourcircuit/circuit-api" target="_blank">https://github.com/yourcircuit/circuit-api</a>
-
     <h3>Live example:</h3>
     <p>Paste a conversation ID of a conversation you are part of and start chatting.</p>
-    <input id="conversationId" placeholder="Enter a conversation ID" value="{{convId::input}}">
+    <input id="email" type="text" placeholder="Logon Email" value="{{email::input}}">
+    <input id="password" type="password" placeholder="Logon Password" value="{{password::input}}">
+    <button on-click="logon">Logon</button>
+    <div><input id="conversationId" type="text" placeholder="Enter a conversation ID" value="{{convId::input}}"></div>
     <br><br>
 
     <!-- conversation attribute is passed in below in JS. For predefined conversations, the
          conversation can be passed in via HTML -->
     <circuit-chat id="chat" conversation="{{convId}}" auto-logon></circuit-chat>
-    <iron-localstorage name="circuit-chat-demo-conv-id" value="{{convId}}"></iron-localstorage>
+    <!-- <iron-localstorage name="circuit-chat-demo-conv-id" value="{{convId}}"></iron-localstorage> -->
   </template>
 
 </dom-module>
@@ -50,21 +52,32 @@ Copyright (c) 2015 Unify. All rights reserved.
   Polymer({
     is: 'circuit-chat-demo',
 
+    _client: null,
+
     ready: function () {
       app.pageTitle = 'Polymer element: circuit-chat';
+      _client = new Circuit.Client();
+      this.$.chat.api = _client;
+    },
 
-      this.$.conversationId.addEventListener('input', function (evt) {
-        if (evt.target.value.length >= 36) {
-          // Pass conversation ID to chat example
-          this.convId = evt.target.value;
-          //this.$.chat.conversation = evt.target.value;
-        }
-      }.bind(this));
+    logon: function () {
+      var self = this;
+      _client.logon({email: this.email, password: this.password}).then(function () {
+        self.$.conversationId.addEventListener('input', function (evt) {
+          if (evt.target.value.length >= 36) {
+            // Pass conversation ID to chat example
+            self.convId = evt.target.value;
+            //this.$.chat.conversation = evt.target.value;
+          }
+        });
 
-      // Show how circuit-chat fires on-message events
-      this.$.chat.addEventListener('on-message', function (message) {
-        console.log('Received message: ' + message);
-      });
+        // Show how circuit-chat fires on-message events
+        self.$.chat.addEventListener('on-message', function (message) {
+          console.log('Received message: ' + message);
+        });        
+      });      
     }
+
+
   });
 </script>

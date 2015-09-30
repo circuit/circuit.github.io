@@ -19,20 +19,18 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0",
-    "circuit-api": "yourcircuit/circuit-api"
+    "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
   },
-  "_release": "497bf7ab82",
+  "_release": "c22e1cc1fa",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "497bf7ab823178e0f087cdb42d957ded94f4a3db"
+    "commit": "c22e1cc1fa9579396e36998e363184c78bd12a2f"
   },
   "_source": "git://github.com/yourcircuit/circuit-chat.git",
   "_target": "*",
-  "_originalSource": "yourcircuit/circuit-chat",
-  "_direct": true
+  "_originalSource": "yourcircuit/circuit-chat"
 }
