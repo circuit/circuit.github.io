@@ -14,8 +14,8 @@ Copyright (c) 2015 Unify. All rights reserved.
     #container, #container2 {
       position: relative;
       margin: 10px;
-      width: 640px;
-      height: 480px;
+      width: 320px;
+      height: 240px;
       background-color: whitesmoke;
     }
     #localvideo {
@@ -29,15 +29,26 @@ Copyright (c) 2015 Unify. All rights reserved.
       width: inherit;
       height: inherit;
     }
+    #connectionState {
+      font-size: 12px;
+    }
   </style>
 
   <template>
+    <h3>Usage:</h3>
+    <xmp class="prettyprint html">
+      <circuit-call-button
+        peer="bob@company.com"
+        controls
+        create-conversation
+        peer-video-selector="#container"
+      >Start Call</circuit-call-button>
+    </xmp>
+    <h3>Github:</h3>
+    <p><a href="https://github.com/yourcircuit/circuit-call-button">https://github.com/yourcircuit/circuit-call-button</a></p>
     <h3>Live example:</h3>
     <p>In this example you can initiate a direct call to another Circuit user and toggle video or mute/unmute.</p>
     <p>Only circuitsandbox accounts will work at this time.</p>
-    <p>
-      New to <a href="https://www.circuit.com/" target="_blank">Circuit</a>? <a href="https://developers.circuit.com/registration"  target="_blank">Register</a> for a <a href="https://developers.circuit.com"  target="_blank">developer</a> account.
-    </p>
     <section>
       <input type="text" placeholder="Email" value="{{email::input}}">
       <input type="password" placeholder="Logon Password" value="{{password::input}}">
