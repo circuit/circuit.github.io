@@ -1,0 +1,26 @@
+{
+  "name": "circuit-call-button",
+  "version": "0.1.0",
+  "authors": [
+    "Roger Urscheler <roger.urscheler@unify.com>"
+  ],
+  "description": "An element providing a button to intiate Circuit direct calls.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "Circuit",
+    "Unify"
+  ],
+  "main": "circuit-call-button.html",
+  "homepage": "https://github.com/yourcircuit/circuit-call-button/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}

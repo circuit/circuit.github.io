@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 Unify, Inc. All rights reserved.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>circuit-call-button Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="https://circuitsandbox.net/circuit.js"></script>
+    <link rel="import" href="../circuit-call-button.html">
+    <style>
+    body {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    #container, #container2 {
+      position: relative;
+      margin: 10px;
+      width: 320px;
+      height: 240px;
+      background-color: whitesmoke;
+    }
+    #localvideo {
+      position: absolute;
+      bottom: 0px;
+      z-index: 10;
+      width: 72px;
+      height: 54px;
+    }
+    #peervideo {
+      width: inherit;
+      height: inherit;
+    }
+    #peer, #email {
+      width: 200px;
+    }
+    section {
+      padding-top: 10px;
+    }
+    </style>
+  </head>
+  <body unresolved>
+
+    <h3>Live example:</h3>
+    <p>In this example you can initiate a direct call to another Circuit user and toggle video or mute/unmute.</p>
+    <p>Only circuitsandbox accounts will work at this time.</p>
+    <p>
+      New to <a href="https://www.circuit.com/" target="_blank">Circuit</a>? <a href="https://developers.circuit.com/registration"  target="_blank">Register</a> for a <a href="https://developers.circuit.com"  target="_blank">developer</a> account.
+    </p>
+    <section>
+      <input id="email" type="text" placeholder="Email" value="circuitsdk01@gmail.com">
+      <input id="password" type="password" placeholder="Password" value="GoCircuit!">
+      <button id="logonBtn" onclick="logon()">Logon</button>
+      <span id="connectionState">Disconnected</span>
+    </section>
+    <section>
+      <input id="peer" type="text" placeholder="Callee's email" value="circuitsdk02@gmail.com">
+      <circuit-call-button
+        controls
+        create-conversation
+        peer-video-selector="#container">Start Call</circuit-call-button>
+    </section>
+    <section>
+      <div id="container"></div>
+    </section>
+
+    <script>
+      var client;
+      var btn = document.querySelector('#logonBtn');
+
+      function logon() {
+        // Login/Logout distinction
+        if (btn.innerHTML === 'Logout') {
+          client && client.logout().then(function () {
+            btn.innerHTML = 'Logon';
+          });
+          return;
+        }
+
+        var email = document.querySelector('#email').value;
+        var password = document.querySelector('#password').value;
+        var peer = document.querySelector('#peer').value;
+
+        // Create Circuit client instance and set api and callee's email
+        client = new Circuit.Client();
+        document.querySelector('circuit-call-button').api = client;
+        document.querySelector('circuit-call-button').peer = peer;
+
+        // Logon
+        client.logon({email: email, password:password}).then(function (user) {
+          btn.innerHTML = 'Logout';
+        }).catch(function (e) {
+          console.log('Unable to logon. ' + e);
+          client = null;
+        });
+
+        // Display the connection state
+        client.addEventListener('connectionStateChanged', function (evt) {
+          document.querySelector('#connectionState').textContent = evt.state;
+        });
+      }
+
+      // Listen for changes in the peer input field
+      document.querySelector('#peer').addEventListener('blur', function (evt) {
+        document.querySelector('circuit-call-button').peer = evt.target.value;
+      });
+
+    </script>
+
+  </body>
+</html>
