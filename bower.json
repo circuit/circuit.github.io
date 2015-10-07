@@ -12,7 +12,7 @@
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "moment": "~2.10.3",
     "app-router": "~2.6.1",
-    "pushstate-anchor": "~0.3.2",
+    "circuit-call-button": "yourcircuit/circuit-call-button",
     "circuit-chat": "yourcircuit/circuit-chat",
     "webrtc-getusermedia": "yourcircuit/webrtc-getusermedia"
   },

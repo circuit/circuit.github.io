@@ -24,11 +24,11 @@
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
   },
-  "_release": "c22e1cc1fa",
+  "_release": "88e2b892a1",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "c22e1cc1fa9579396e36998e363184c78bd12a2f"
+    "commit": "88e2b892a14ccd67af194dfde1f904e35ed7ceeb"
   },
   "_source": "git://github.com/yourcircuit/circuit-chat.git",
   "_target": "*",

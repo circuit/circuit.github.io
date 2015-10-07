@@ -47,6 +47,9 @@ Copyright (c) 2015 Unify. All rights reserved.
         <paper-menu selected="-1" selectable="paper-item" on-iron-activate="menuSelect">
           <div class="separator">Polymer Examples</div>
           <paper-item role="menuitem">
+            <a href="#/circuit-call-button" layout horizontal center>circuit-call-button</a>
+          </paper-item>
+          <paper-item role="menuitem">
             <a href="#/circuit-chat" layout horizontal center>circuit-chat</a>
           </paper-item>
           <paper-item role="menuitem">
@@ -94,6 +97,7 @@ Copyright (c) 2015 Unify. All rights reserved.
         <div class="content">
           <app-router id="router">
             <!-- Polymer -->
+            <app-route path="/circuit-call-button" import="/pages/circuit-call-button-demo.html"></app-route>
             <app-route path="/circuit-chat" import="/pages/circuit-chat-demo.html"></app-route>
             <app-route path="/webrtc-getusermedia" import="/pages/webrtc-getusermedia-demo.html"></app-route>
 

@@ -1,0 +1,115 @@
+<!--
+@license
+Copyright (c) 2015 Unify. All rights reserved.
+-->
+
+<dom-module id="circuit-call-button-demo">
+
+  <script type="text/javascript" src="https://circuitsandbox.net/circuit.js"></script>
+
+  <style is="custom-style">
+    h3 {
+      padding-top: 10px;
+    }
+    #container, #container2 {
+      position: relative;
+      margin: 10px;
+      width: 640px;
+      height: 480px;
+      background-color: whitesmoke;
+    }
+    #localvideo {
+      position: absolute;
+      bottom: 0px;
+      z-index: 10;
+      width: 80px;
+      height: 60px;
+    }
+    #peervideo {
+      width: inherit;
+      height: inherit;
+    }
+  </style>
+
+  <template>
+    <h3>Live example:</h3>
+    <p>In this example you can initiate a direct call to another Circuit user and toggle video or mute/unmute.</p>
+    <p>Only circuitsandbox accounts will work at this time.</p>
+    <p>
+      New to <a href="https://www.circuit.com/" target="_blank">Circuit</a>? <a href="https://developers.circuit.com/registration"  target="_blank">Register</a> for a <a href="https://developers.circuit.com"  target="_blank">developer</a> account.
+    </p>
+    <section>
+      <input type="text" placeholder="Email" value="{{email::input}}">
+      <input type="password" placeholder="Logon Password" value="{{password::input}}">
+      <button on-click="logon">{{logonButtonText}}</button>
+      <span id="connectionState">{{connectionState}}</span>
+    </section>
+    <section>
+      <input type="text" placeholder="Callee's email" value="{{peer::input}}">
+      <circuit-call-button
+        peer="{{peer}}"
+        id="btn"
+        controls
+        create-conversation
+        peer-video-selector="#container">Start Call</circuit-call-button>
+    </section>
+    <section>
+      <div id="container"></div>
+    </section>
+  </template>
+
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'circuit-call-button-demo',
+
+    properties: {
+      client: Object,
+
+      email: {
+        type: String,
+        value: 'circuitsdk01@gmail.com'
+      },
+
+      password: {
+        type: String,
+        value: 'GoCircuit!'
+      },
+
+      peer: {
+        type: String,
+        value: 'circuitsdk02@gmail.com'
+      },
+
+      logonButtonText: {
+        type: String,
+        value: 'Login'
+      },
+
+      connectionState: {
+        type: String,
+        value: 'Disconnected'
+      }
+    },
+
+    ready: function () {
+      app.pageTitle = 'Polymer element: circuit-call-button';
+      client = new Circuit.Client();
+      
+      // Display the connection state and login button label
+      client.addEventListener('connectionStateChanged', function (evt) {
+        this.set('logonButtonText', (evt.state === 'Disconnected' ? 'Login' : 'Logout'));
+        this.set('connectionState', evt.state);
+      }.bind(this));
+
+      // Set the client instance
+      this.$.btn.api = client;
+    },
+
+    logon: function () {
+      client.logon({email: this.email, password: this.password});
+    }
+
+  });
+</script>

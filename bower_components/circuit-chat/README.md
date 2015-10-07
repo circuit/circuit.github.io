@@ -8,7 +8,6 @@
 <link rel="import" href="components/circuit-chat/circuit-chat.html">
 
 <circuit-chat
-  auto-logon 
   conversation="ef675fc5-dcb1-4fe2-bcd1-83f32be5466f">
 </circuit-chat>
 ```
