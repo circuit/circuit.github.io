@@ -2,10 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Circuit OAuth2 Test</title>
+    <title>Circuit OAuth2</title>
     <script src="https://circuitdev.unify.com:8094/circuit.js"></script>
   </head>
   <body>
+    <h2>Circuit JS-SDK examples</h2>
+    <h3>Circuit OAuth2 (Implicit Flow)</h3>
+    <div>
+      This example shows how to use the JS SDK to login with OAuth and fetch the users conversation IDs.
+      Source code on <a href="https://github.com/circuit/circuit.github.io/blob/master/oauth/oauth.html">github</a><br>
+    </div>
+    <br>
     <button id="connect">Get my Circuit Conversations</button>
     <button id="refresh">Refresh page</button>
     <button id="logout">Logout</button>
@@ -23,7 +30,7 @@
     var client = new Circuit.Client({
         domain: 'circuitdev.unify.com:8094',
         client_id: '36c958ebb9bc4ef3a500e4880073048c',
-        redirect_uri: 'https://circuit.github.io/oauth/redirect.html',
+        redirect_uri: 'https://localhost:7005/examples/redirect.html',
         scope: 'READ_USER_PROFILE,WRITE_USER_PROFILE,READ_CONVERSATIONS'
     });
 
@@ -57,4 +64,3 @@
     </script>
   </body>
 </html>
-
