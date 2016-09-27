@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Circuit OAuth2 - REST</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+      .hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="authenticate hidden">
+      <a class="connect" href="">Connect</a>
+    </div>
+    <div class="authenticated hidden">
+      <p>You are using token <span class="token">[no token]</span></p>
+      <p>Your Circuit display name is <span class="user"></span></p>
+    </div>
+
+    <script>
+      $(function () {
+        var extractToken = function(hash) {
+          var match = hash.match(/access_token=([\w-]+)/);
+          return !!match && match[1];
+        };
+
+        var CLIENT_ID = '2e0124ccea64428bbb33cc745f07fef2';
+        var AUTHORIZATION_ENDPOINT = "https://circuitsandbox.net/oauth/authorize";
+        var RESOURCE_ENDPOINT = "https://circuitsandbox.net/rest/v2/users/profile";
+
+        var token = extractToken(document.location.hash);
+        if (token) {
+          $('div.authenticated').show();
+          $('span.token').text(token);
+          $.ajax({
+              url: RESOURCE_ENDPOINT
+            , crossDomain: true
+            , beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                xhr.setRequestHeader('Accept', 'application/json');
+              }
+            , success: function (response) {
+                history.pushState('', document.title, window.location.pathname + window.location.search);
+                var container = $('span.user');
+                if (response) {
+                  container.text(response.displayName);
+                } else {
+                  container.text('An error occurred.');
+                }
+              }
+          });
+        } else {
+          $('div.authenticate').show();
+
+          var authUrl = AUTHORIZATION_ENDPOINT + 
+            '?response_type=token' +
+            '&client_id=' + CLIENT_ID +
+            '&scope=ALL' +
+            '&redirect_uri=' + window.location;
+
+          $('a.connect').attr('href', authUrl);
+        }
+      });
+    </script>
+  </body>
+</html>
