@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="Circuit API Examples">
+    <meta name="author" content="Roger Urscheler">
+    <link rel="shortcut icon" type="image/png" href="images/restapi-logo.png"/>
+    <title>Circuit API Examples</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper"></div>
+ 
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>REST API</h1>
+                        <p>The REST API support OAuth2 and Basic Authentication. WebRTC is not supported with the REST API, use the JS SDK for WebRTC. Webhooks are coming very soon.</p>
+                        <a href="https://circuitsandbox.net/rest/v2/swagger" target="_blank" class="btn btn-default">API Documenation</a><br><br>
+                        <p>Until the new developer portal is ready contact <a href="mailto:roger.urscheler@unify.com">roger.urscheler@unify.com</a> to register your app on the sandbox. You then get a client_id to use for OAuth2. For Authorization Grant flows you will also get a secret.</p>
+                    </div>
+                </div>
+
+                <!-- Examples -->
+                <div class="row">
+
+                    <!-- Page Header -->
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Examples</h2>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/intro.html" target="_blank">
+                                <img class="img-responsive" src="/images/oauthrest.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>OAuth & REST call</h5>
+                                <p>Logon using OAuth2 using XHR requests and fetch the user info using an XHR REST call.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/oauthrest.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/oauthrest.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+    <script>
+    $(function(){
+      $("#sidebar-wrapper").load("/sidebar.html"); 
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="Circuit API Examples">
+    <meta name="author" content="Roger Urscheler">
+    <link rel="shortcut icon" type="image/png" href="images/js-logo.png"/>
+    <title>Circuit API Examples</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper"></div>
+ 
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>JavaScript SDK</h1>
+                        <p>The source of the examples below are on <a href="https://github.com/circuit/js-sdk/" target="_blank">github.com/circuit</a> and are hosted via rawgit. When running the examples you will be asked to sign in with a Circuit sandbox account. You can register for a free account on the <a href="https://www.circuit.com/web/developers/registration" target="_blank">Circuit Portal</a>.</p>
+                        <a href="https://circuitsandbox.net/sdk" target="_blank" class="btn btn-default">API Documenation</a><br><br>
+                        <p>Teaser example to logon and fetch conversations:</p>
+                        <pre class="prettyprint">
+// Create the client with the client_id (aka app key), scope and optionally a redirect_uri
+let client = new Circuit.Client({
+  client_id: 'your app key',
+  scope: 'READ_USER_PROFILE,READ_CONVERSATIONS'
+});
+
+// Logon using OAuth2, then retrieve the logged on user's conversations
+client.logon()
+  .then(user => console.log('Successfully authenticated as ' + user.displayName))
+  .then(client.getConversations)
+  .then(conversations => conversations.forEach(c => console.log(c.convId)))
+  .catch(err => console.error(err));
+                        </pre>
+                        <p>Until the new developer portal is ready contact <a href="mailto:roger.urscheler@unify.com">roger.urscheler@unify.com</a> to register your app on the sandbox. You then get a client_id to use for OAuth2.</p>
+                        <p>This <a href="http://codepen.io/circuit/post/new-light-weight-js-sdk" target="_blank">codepen blog</a> explains some recent changes to the JS SDK.</p>
+                    </div>
+                </div>
+
+                <!-- Examples -->
+                <div class="row">
+
+                    <!-- Page Header -->
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Examples</h2>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/intro.html" target="_blank">
+                                <img class="img-responsive" src="/images/intro.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Introduction example</h5>
+                                <p>Logon using OAuth2, read most recent conversation. Defines injectors and shows conversation with extended injector attributes. Listens to various events.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/intro.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/intro.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/screenshare.html" target="_blank">
+                                <img class="img-responsive" src="images/groupcall.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Group Call: video and screenshare</h5>
+                                <p>This example shows how to start, join or leave a conference call. Also allows to toggle video or screenshare.
+                                For screenshare the <a href="https://github.com/circuit/screenshare-chrome-extension" target="_blank">Circuit SDK Chrome Extension</a> is required.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/groupcall.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/groupcall.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/messaging.html" target="_blank">
+                                <img class="img-responsive" src="images/messaging.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Complete Messaging Examples (AngularJS)</h5>
+                                <p>Shows complete messaging functionality. Allow to select a conversation to send a message to, upload files, or create a new conversation.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/messaging.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/messaging.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/directcall.html" target="_blank">
+                                <img class="img-responsive" src="images/directcall.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Direct Call: audio and video</h5>
+                                <p>This example shows how to start an audio/video direct call, or auto accept an incoming call.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/directcall.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/directcall.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/oauth.html" target="_blank">
+                                <img class="img-responsive" src="images/oauth.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>OAuth2 Login</h5>
+                                <p>This example shows how to use the JS SDK to login with OAuth and fetch the conversation IDs.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/oauth.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/oauth.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/telephony.html" target="_blank">
+                                <img class="img-responsive" src="images/telephony.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Telephony (PSTN) call</h5>
+                                <p>Make outgoing phone calls to any regular telephone. Telephony Connector needs to be setup for your tenant.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/telephony.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/telephony.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <a href="https://rawgit.com/yourcircuit/js-sdk/master/canvas.html" target="_blank">
+                                <img class="img-responsive" src="images/canvas.jpg" alt="">
+                            </a>
+                            </div>
+                            <div class="panel-body">
+                                <h5><i class="fa fa-fw fa-check"></i>Share HTML5 Canvas</h5>
+                                <p>This example shows a schematic in a HTML5 canvas and allows drawing on top of it and shares the combined image in the call.
+                                The application can use the new <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream" tagert="_blank">HTMLCanvasElement.captureStream</a> API available in Chrome and Firefox to capture a stream from a canvas.
+                                Note that Chrome has an issue with compression which causes WebRTC to reduce the resolution, or not even show the drawing.
+                                Use <a href="https://www.mozilla.org/en-US/firefox/new/">FireFox</a> in the meantime.</p>
+                                <a href="https://rawgit.com/yourcircuit/js-sdk/master/canvas.html" target="_blank" class="btn btn-default">Live example</a>
+                                <a href="https://github.com/circuit/js-sdk/blob/master/canvas.html" target="_blank" class="btn btn-default">Source</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+    <script>
+    $(function(){
+      $("#sidebar-wrapper").load("/sidebar.html"); 
+    });
+    </script>
+</body>
+
+</html>

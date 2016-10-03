@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="Circuit API Examples">
+    <meta name="author" content="Roger Urscheler">
+    <link rel="shortcut icon" type="image/png" href="images/logo-circuit.png"/>
+    <title>Circuit API Examples</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper"></div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <!-- Jumbotron Header -->
+                <header class="jumbotron hero-spacer">
+                    <h1>Circuit API examples</h1>
+                    <p>Build amazing real-time apps using Circuit APIs. Extend your site with video conferences, screensharing, or rich text messaging. Or create a bot to enhance the Circuit experience by integrating with third party services.</p>
+                </header>
+
+                <hr>
+
+
+                <!-- Page Features -->
+                <div class="row text-center">
+
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <a href="/jssdk">
+                            <div class="thumbnail">
+                                <img src="/images/js-logo.png" alt="">
+                                <div class="caption">
+                                    <h3>JavaScript SDK</h3>
+                                    <h5>JavaScript client-side library</h5>
+                                    <p>Best suited for client-side web application. Simple APIs for audio, video, screenshare calls and conferences, messaging, OAuth and more.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <a href="/nodejs">
+                            <div class="thumbnail">
+                                <img src="/images/nodejs-logo.png" alt="">
+                                <div class="caption">
+                                    <h3>node.js SDK</h3>
+                                    <h5>node.js JavaScript library</h5>
+                                    <p>Best suited for bots or server-side web application. Same JS API as the JS SDK, including events. No WebRTC support.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <a href="/rest">
+                            <div class="thumbnail">
+                                <img src="/images/restapi-logo.png" alt="">
+                                <div class="caption">
+                                    <h3>REST API</h3>
+                                    <h5>RESTful API</h5>
+                                    <p>Best suited for bots or server-side web application. No WebRTC support. Webhooks for events coming soon.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <a href="/polymer">
+                            <div class="thumbnail">
+                                <img src="/images/polymer-logo.png" alt="">
+                                <div class="caption">
+                                    <h3>Polymer</h3>
+                                    <h5>Polymer web components</h5>
+                                    <p>Best suited for enhancing existing web appplication with extremely simple to use web components.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    $(function(){
+      $("#sidebar-wrapper").load("/sidebar.html"); 
+    });
+    </script>
+
+</body>
+
+</html>
