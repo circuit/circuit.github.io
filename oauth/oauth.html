@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Circuit OAuth2</title>
+    <script src="https://circuitsandbox.net/circuit.js"></script>
+  </head>
+  <body>
+    <h2>Circuit JS-SDK examples</h2>
+    <h3>Circuit OAuth2 (Implicit Flow)</h3>
+    <div>
+      This example shows how to use the JS SDK to login with OAuth and fetch the conversation IDs.
+      Source code on <a href="https://github.com/circuit/circuit.github.io/blob/master/oauth/oauth.html">github</a><br>
+    </div>
+    <br>
+    <button id="connect">Get my Circuit Conversations</button>
+    <button id="refresh">Refresh page</button>
+    <button id="logout">Logout</button>
+    <pre id="result"></pre>
+
+    <script type="text/javascript">
+
+    var connectButton = document.getElementById('connect');
+    var refreshButton = document.getElementById('refresh');
+    var logoutButton = document.getElementById('logout');
+    var result = document.getElementById('result');
+    refreshButton.style.display = 'none';
+    logoutButton.style.display = 'none';
+
+    var client = new Circuit.Client({
+        client_id: '2e0124ccea64428bbb33cc745f07fef2',
+        redirect_uri: 'https://circuit.github.io/oauth/redirect.html',
+        scope: 'READ_USER_PROFILE,READ_CONVERSATIONS'
+    });
+
+    connectButton.addEventListener('click', () => {
+        client.logon()
+        .then(user => {
+            result.innerHTML = 'Successfully authenticated as ' + user.displayName;
+            connectButton.style.display = 'none';
+            refreshButton.style.display = '';
+            logoutButton.style.display = '';
+        })
+        .then(client.getConversations)
+        .then((conversations) => conversations.forEach(c => result.innerHTML += '<br>' + c.convId))
+        .catch(err => {
+            result.innerHTML = 'Something went wrong.<br><pre>' + JSON.stringify(err) + '</pre>';
+        });
+    });
+
+    logoutButton.addEventListener('click', () => {
+        client.logout().then(() => {
+            refreshButton.style.display = 'none';
+            logoutButton.style.display = 'none'
+            connectButton.style.display = '';
+            result.innerHTML = '';
+        });
+    });
+
+    refreshButton.addEventListener('click', () => {
+        location.reload(false);
+    });
+    </script>
+  </body>
+</html>
