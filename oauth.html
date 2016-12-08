@@ -49,7 +49,6 @@
                             <li><b>Server-side Web App</b>, then you require an <a href="#authorization_code">Authorization Code</a> OAuth app</li>
                         </ul>
                         <p>Read the descriptions below to know what information to provide when requesting an app.</p>
-                        <br>
                     </div>
                 </div>
 
@@ -62,13 +61,13 @@
                     
                     <p>The authorization code grant type is optimized for server-side applications, where source code is not publicly exposed, and Client Secret confidentiality can be maintained. This is a redirection-based flow, which means that the application must be capable of interacting with the user's web browser to open the Circuit OAuth authorization page.</p>
 
-                    <p>An example server-side web app in node.js is listed on the <a href="rest.html">REST API</a> page with its source code on <a href="https://github.com/circuit/webserver-example" target="_blank">github</a>. Rather than implementing the OAuth flow manually as shown in this example, it is recommended to use an OAuth library. There are many open source libraries available on github and npm such as <a href="https://www.npmjs.com/package/oauth" target="_blank">oauth</a> or <a href="https://www.npmjs.com/package/passport-oauth2" target="_blank">passport-oauth2</a>.</p>
+                    <p>Rather than implementing the OAuth flow manually as shown in this example, it is recommended to use an OAuth library. There are many open source libraries available on github and npm such as <a href="https://www.npmjs.com/package/oauth" target="_blank">oauth</a> or <a href="https://www.npmjs.com/package/passport-oauth2" target="_blank">passport-oauth2</a>.</p>
                     <p>For more details on Authorization Code Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.1" target="_blank">rfc6749</a>.</p>
 
                     <h4>Authorization Code Flow</h4>
                     <p>Once your app is registered you are provided with a <code>client_id</code> and <code>client_secret</code>. The client_id identifies your app. The client_secret is like a password, so keep it confidential ☺. Using these credentials your app can get an OAuth access token on behalf of a user, as long as the user is willing to give your app access.</p>
 
-                    <h5>Step 1: Application Request Authorization Code</h5>
+                    <h5>Step 1: Application Requests Authorization Code</h5>
                     <p>On page load, or on a user action (e.g. login button) your app (the browser) needs to redirect to Circuit's <code>/oauth/authorize</code> endpoint. Rather than a redirect apps usually opt to open a new window instead. The request requires the following parameters:</p>
                     
                     <table class="table table-condensed">
@@ -83,7 +82,7 @@
                             <tr>
                                 <td><code>response_type</code></td>
                                 <td><code>code</code></td>
-                                <td>Causes the Circuit endpoint to an authorization code. Web server apps should use <b>code</b>.</td> 
+                                <td>Causes the Circuit endpoint to return an authorization code. Web server apps should use <b>code</b>.</td> 
                             </tr>
                             <tr>
                                 <td><code>client_id</code></td>
@@ -110,7 +109,6 @@
 
                     <h6>Example request:</h6>
                     <pre><code>https://circuitsandbox.net/oauth/authorize?response_type=code&client_id=aee562d3d6a947efa04438a996f34c80&redirect_uri=https%3A%2F%my-cool-app.com%oauthcallback&scope=READ_USER_PROFILE,READ_CONVERSATIONS&state=fa04438a996f</code></pre>
-                    <br>
 
                     <h5>Step 2: User grants access</h5>
                     <p>The browser will now show the OAuth permission/consent page (with prior login if not already logged in). This page is asking the user to give your app permissions to act on the user's behalf. The app name and author are shown on that page to identify the app, as well as the requested permissions.</p>
@@ -120,19 +118,17 @@
                     </div>
 
 
-                    <br>
                     <h5>Step 3: Application receives Authorization Code</h5>
-                    <p>Once the user grants access, the permission page is redirected to the <code>redirect_uri</code> with the <code>code</code> and <code>state</code> as url parameters. Your application should verify that the <code>state</code> parameter matches the request to prevent CSRF attacks. The <code>code</code> will be used in the next step to request an access token.<br>
-                    Note: If the consent page was opened in a new window your application is responsible to close it and pass the parameters to the parent window (your app). </p>
+                    <p>Once the user grants access, the permission page is redirected to the <code>redirect_uri</code> with the <code>code</code> and <code>state</code> as url parameters. Your application should verify that the <code>state</code> parameter matches the request to prevent CSRF attacks. The <code>code</code> will be used in the next step to request an access token.</p>
+                    <p>Note: If the consent page was opened in a new window your application is responsible to close it and pass the parameters to the parent window (your app). </p>
                 
                     <h6>Example successful response:</h6>
-                    <pre><code>https://circuitsandbox.net/oauthCallback?code=c6153bbf147c1fcc5f05ebbabee2d396&state=fa04438a996f</code></pre>
+                    <pre><code>https://my-cool-app.com/oauthcallback?code=c6153bbf147c1fcc5f05ebbabee2d396&state=fa04438a996f</code></pre>
 
                     <h6>Example unsuccessful response:</h6>
                     <pre><code>todo</code></pre>
 
 
-                    <br>
                     <h5>Step 4: Application requests Access Token</h5>
                     <p>The <code>code</code> received in the previous step is short lived (60 sec). The application needs to exchange this code with an access token in that timeframe.</p>
                     <p>For this the application sends a POST request to the <code>/oauth/token</code> endpoint with the following form data:</p>
@@ -179,7 +175,6 @@ redirect_uri:https://my-cool-app.com/oauthcallback&
 grant_type:authorization_code&
 code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
 <p><i>Line breaks for readability of form fields</i></p>
-<br>
 
 
                     <h5>Step 5: Application Receives Access Token</h5>
@@ -187,7 +182,6 @@ code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
 
                     <h6>Example successful response:</h6>
                     <pre><code>{"access_token":"a542f71d785d40b9924c8d07b518629a","token_type":"Bearer","scope":["READ_USER_PROFILE","READ_CONVERSATIONS"]}</code></pre>
-                    <br>
 
 
                     <h5>Step 6: Perform API calls on user's behalf</h5>
@@ -196,21 +190,156 @@ code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
 
                     <h6>Example curl request to fetch conversation on behalf of user:</h6>
                     <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
-                    <br>
+
+                    <h4>Code examples</h4>
+                    <p>An example server-side web app in node.js is listed on the <a href="rest.html">REST API</a> page with its source code on <a href="https://github.com/circuit/webserver-example" target="_blank">github</a>.</p>
                 </div>
 
 
                 <div class="row" id="implicit">
                     <h3>Implicit Grant</h3>
-                    
-                </div>
+                    <p>The implicit grant type is used for client-side web applications (i.e. applications that run in a web browser), where the client secret confidentiality is not guaranteed. The implicit grant type is also a redirection-based flow but the access token is given to the client-side JavaScript application, so it may be exposed to the user and other applications on the user's device. Also, this flow does not authenticate the identity of the application, and relies on the redirect uri (upon requesting the app) to serve this purpose.</p>
+                    <p>The implicit grant type does not support refresh tokens.</p>
 
+                    <p>For more details on Implicit Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.2" target="_blank">rfc6749</a>.</p>
+
+                    <h4>JavaScript SDK</h4>
+                    <p>Rather than implementing this flow manually in your JavaScript application, you might want to use the JS SDK which abstracts this flow for you. Using the JS SDK the logon is as simple as this:</p>
+                    <pre class="prettyprint">
+let client = new Circuit.Client({
+  client_id: 'your app key',
+  scope: 'READ_USER_PROFILE,READ_CONVERSATIONS'
+});
+
+client.logon()
+.then(user => console.log('Successfully authenticated as ' + user.displayName))
+.catch(console.error);</pre>
+
+                    <h4>Implicit Flow</h4>
+                    <p>Once your app is registered you are provided with a <code>client_id</code>. The client_id identifies your app. Using the client_id your app can get an OAuth access token on behalf of a user, as long as the user is willing to give your app access.</p>
+
+                    <h5>Step 1: Application Requests Authorization Code</h5>
+                    <p>On page load, or on a user action (e.g. login button) your app (the browser) needs to redirect to Circuit's <code>/oauth/authorize</code> endpoint. Rather than a redirect apps usually opt to open a new window instead. The request requires the following parameters:</p>
+                    
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>response_type</code></td>
+                                <td><code>token</code></td>
+                                <td>Causes the Circuit endpoint to return an access token. Client-side web apps should use <b>token</b>.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>client_id</code></td>
+                                <td>The client_id obtained when requesting the OAuth app.</td>
+                                <td>Identifies the client that is making the request. The value passed in this parameter must exactly match the client_id obtained.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>redirect_uri</code></td>
+                                <td>Url to be redirected after access is granted by user.</td>
+                                <td>Complete Url including protocol and port if applicable. Host (protocol, domain and port) must match one of the domains of requested OAuth app. E.g. https://my-cool-app.com/oauthcallback in which case https://my-cool-app.com had to be requested on app creation.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>scope</code></td>
+                                <td>Comma-delimited set of permissions that the application requests.</td>
+                                <td>The values passed in this parameter are listed on the consent screen that is shown to the user. Supported scopes are: <code>ALL, READ_USER_PROFILE, WRITE_USER_PROFILE, READ_CONVERSATIONS, WRITE_CONVERSATIONS, READ_USER, CALLS</code></td> 
+                            </tr>
+                            <tr>
+                                <td><code>state</code></td>
+                                <td>Any string</td>
+                                <td>Provides any state that might be useful to your application upon receipt of the response. The Circuit Server roundtrips this parameter, so your application receives the same value it sent. To mitigate against cross-site request forgery (CSRF), it is strongly recommended to include an anti-forgery token in the state, and confirm it in the response.</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h6>Example request:</h6>
+                    <pre><code>https://circuitsandbox.net/oauth/authorize?grant_type=client_credentials&client_id=aee562d3d6a947efa04438a996f34c80&scope=READ_USER_PROFILE,READ_CONVERSATIONS&state=fa04438a996f</code></pre>
+
+                    <h5>Step 2: User grants access</h5>
+                    <p>The browser will now show the OAuth permission/consent page (with prior login if not already logged in). This page is asking the user to give your app permissions to act on the user's behalf. The app name and author are shown on that page to identify the app, as well as the requested permissions.</p>
+                    <div class="oauth-image" style="display: flex;flex-flow: row nowrap;">
+                        <img class="img-responsive" src="/images/login-page.jpg" alt="">
+                        <img class="img-responsive" src="/images/consent-page.jpg" alt="">
+                    </div>
+
+
+                    <h5>Step 3: Application receives Access Token</h5>
+                    <p>Once the user grants access, the permission page is redirected to the <code>redirect_uri</code> with the <code>access_token</code> and <code>state</code> as url parameters. Your application should verify that the <code>state</code> parameter matches the request to prevent CSRF attacks. The <code>access_token</code> can now be used by your client-side app to perform API calls on the user's behalf.<br>
+                    Note: If the consent page was opened in a new window your application is responsible to close it and pass the parameters to the parent window (your app). </p>
+                
+                    <h6>Example successful response:</h6>
+                    <pre><code>https://my-cool-app.com/oauthcallback?access_token=a542f71d785d40b9924c8d07b518629a&state=fa04438a996f</code></pre>
+
+
+                    <h5>Step 4: Perform API calls on user's behalf</h5>
+                    <p>With the obtained token the application can perform REST API calls, or even use the JS SDK using the token. But if you are using the JS SDK then you can skip all the above steps and let the SDK do that work for you.</p>
+                    <p>For REST API calls, the OAuth access token (aka Bearer token) should be included in the HTTP Authorization header.</p>
+
+                    <h6>Example curl request to fetch conversation on behalf of user:</h6>
+                    <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
+
+                    <h4>Code examples</h4>
+                    <p>A simple client-side web app OAuth example is listed on the <a href="rest.html">REST API</a> page with its source code on <a href="https://github.com/circuit/js-sdk/blob/master/oauthrest.html" target="_blank">github</a>.</p>
+                    <p>An example using the JavaScript SDK is also on  <a href="https://github.com/circuit/js-sdk/blob/master/oauth.html" target="_blank">github</a>.</p>
+                </div>
 
 
 
                 <div class="row" id="client_credentials">
                     <h3>Client Credentials Grant</h3>
+                    <p>The client credentials grant type provides an application a way to access its own service account. Examples of when this might be useful include Bot applications that can be added as participant in conversations.</p>
+
+                    <p>The Client Credentials Grant should only be used in a server-side application to keep the secret confidential. The JavaScript SDK also supports this gratn type, but should only be used by server-side node.js applications.</p>
+
+                    <p>For more details on Client Credentials Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.4" target="_blank">rfc6749</a>.</p>
+
+                    <h4>Client Credentials Flow</h4>
+                    <p>Since this flow is acting on its own behalf rather than on another user's behalf, this flow is very simple.</p>
+                    <p>The application requests an access token by sending its credentials (<code>client_id</code> and <code>client_secret</code>) to the Circuit server.</p>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>grant_type</code></td>
+                                <td><code>client_credentials</code></td>
+                                <td>Causes the Circuit endpoint to return an access token for the client_id and client_secret.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>client_id</code></td>
+                                <td>The client_id obtained when requesting the OAuth app.</td>
+                                <td>Identifies the client that is making the request. The value passed in this parameter must exactly match the client_id obtained.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>client_secret</code></td>
+                                <td>The client_secret obtained when requesting the OAuth app.</td>
+                                <td>Secret to authenticate and authorize the app.</td> 
+                            </tr>
+                            <tr>
+                                <td><code>scope</code></td>
+                                <td>Comma-delimited set of permissions that the application requests.</td>
+                                <td>The values passed in this parameter are listed on the consent screen that is shown to the user. Supported scopes are: <code>ALL, READ_USER_PROFILE, WRITE_USER_PROFILE, READ_CONVERSATIONS, WRITE_CONVERSATIONS, READ_USER, CALLS</code></td> 
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h6>Example request:</h6>
+                    <pre><code>https://circuitsandbox.net/oauth/authorize?response_type=token&client_id=aee562d3d6a947efa04438a996f34c80&client_secret=7fb9eec31b7d45ffaeb9398b93454cfd&scope=READ_USER_PROFILE,READ_CONVERSATIONS&state=fa04438a996f</code></pre>
+
                 </div>
+
 
 
                 <div class="row" id="refresh_token">
