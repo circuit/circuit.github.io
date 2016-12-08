@@ -30,8 +30,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>OAuth 2.0</h1>
-                        <p>Circuit uses OAuth 2.0 for authentication and authorization and support most common OAuth scenarios such as Bots, server and client-side Web Apps. Mobile client SDKs are in the works, but in the meantime can use the REST API with any public OAuth library.</p>
-                        <p>This page is intended to provide an overview of the different OAuth types and help you in choosing the right type for your app. A complete Developer Portal with tutorials, examples, documentation etc is coming soon.</p>
+                        <p>Circuit uses OAuth 2.0 for authentication and authorization and supports most common OAuth 2.0 scenarios such as Bots, server and client-side Web Apps. Mobile client SDKs are in the works, but in the meantime can use the REST API with an open source OAuth library.</p>
+                        <p>This page is intended to provide an overview of the different OAuth types and help you in choosing the right type for your app. A complete Developer Portal with tutorials, examples and documentation is coming soon.</p>
 
                         <p>
                             <div><a href="#authorization_code">Authorization Code Grant</a></div>
@@ -46,13 +46,13 @@
                         </div>
 
                         <h3>Which OAuth 2.0 grant type do I need?</h3>
-                        <p>Is Your app a:</p>
+                        <p>Are you building a:</p>
                         <ul>
                             <li><b>Bot</b>, then you require a <a href="#client_credentials">Client Credentials</a> OAuth app</li>
                             <li><b>Client-side JavaScript Web App</b>, then you require an <a href="#implicit">Implicit</a> OAuth app</li>
                             <li><b>Server-side Web App</b>, then you require an <a href="#authorization_code">Authorization Code</a> OAuth app</li>
                         </ul>
-                        <p>Read the descriptions below for more information on the 3 different grant types.</p>
+                        <p>Read the descriptions in the <a href="#grant_types">OAuth 2.0 Grant Types</a> section for more information on the 3 different grant types supported by Circuit.</p>
 
 
                         <h3>OAuth 2.0 App Registration Form</h3>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="row" id="authorization_code">
+                <div class="row" id="grant_types">
                     <h2>OAuth 2.0 Grant Types</h2>
                 </div>
 
@@ -75,14 +75,15 @@
                     
                     <p>The authorization code grant type is optimized for server-side applications, where source code is not publicly exposed, and Client Secret confidentiality can be maintained. This is a redirection-based flow, which means that the application must be capable of interacting with the user's web browser to open the Circuit OAuth authorization page.</p>
 
-                    <p>Rather than implementing the OAuth flow manually as shown in this example, it is recommended to use an OAuth library. There are many open source libraries available on github and npm such as <a href="https://www.npmjs.com/package/oauth" target="_blank">oauth</a> or <a href="https://www.npmjs.com/package/passport-oauth2" target="_blank">passport-oauth2</a>.</p>
-                    <p>For more details on Authorization Code Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.1" target="_blank">rfc6749</a>.</p>
+                    <p>Rather than implementing the OAuth flow manually as shown in this example, it is recommended to use an OAuth library. There are many open source libraries available on github and npm such as <a href="https://www.npmjs.com/package/oauth" target="_blank">oauth</a>, <a href="https://www.npmjs.com/package/simple-oauth2" target="_blank">simple-oauth2</a> or <a href="https://www.npmjs.com/package/passport-oauth2" target="_blank">passport-oauth2</a>.</p>
+                    <p>For more details on Authorization Code Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.1" target="_blank">rfc6749 section 4.1</a>.</p>
 
                     <h4>Authorization Code Flow</h4>
-                    <p>Once your app is registered you are provided with a <code>client_id</code> and <code>client_secret</code>. The client_id identifies your app. The client_secret is like a password, so keep it confidential ☺. Using these credentials your app can get an OAuth access token on behalf of a user, as long as the user is willing to give your app access.</p>
+                    <p>Once your app is registered you are provided with a <code>client_id</code> and <code>client_secret</code>. The client_id identifies your app. The client_secret is like a password, so keep it confidential. Using these credentials your app can get an OAuth access token on behalf of a user, as long as the user grants your app access.</p>
 
                     <h5>Step 1: Application Requests Authorization Code</h5>
-                    <p>On page load, or on a user action (e.g. login button) your app (the browser) needs to redirect to Circuit's <code>/oauth/authorize</code> endpoint. Rather than a redirect apps usually opt to open a new window instead. The request requires the following parameters:</p>
+                    <p>On page load, or on a user action (e.g. login button) your app needs to redirect the browser to Circuit's <code>/oauth/authorize</code> endpoint. Rather than a redirect, apps usually open a new window instead as seen in the images of Step 2.</p>
+                    <p>The request requires the following parameters:</p>
                     
                     <table class="table table-condensed">
                         <thead>
@@ -116,7 +117,7 @@
                             <tr>
                                 <td><code>state</code></td>
                                 <td>Any string</td>
-                                <td>Provides any state that might be useful to your application upon receipt of the response. The Circuit Server roundtrips this parameter, so your application receives the same value it sent. To mitigate against cross-site request forgery (CSRF), it is strongly recommended to include an anti-forgery token in the state, and confirm it in the response.</td> 
+                                <td>Provides any state that might be useful to your application upon receipt of the response. The Circuit Server roundtrips this parameter, so your application receives the same value it sent. To mitigate against cross-site request forgery (CSRF), it is strongly recommended to include an anti-forgery token in the state, and confirm it in the response. This parameter is not required but strongly recommended for above mentioned security reasons.</td> 
                             </tr>
                         </tbody>
                     </table>
@@ -183,11 +184,11 @@
 Host: circuitsandbox.net
 Content-Type: application/x-www-form-urlencoded
 
-client_id:aee562d3d6a947efa04438a996f34c80&
-client_secret:7fb9eec31b7d45ffaeb9398b93454cfd&
-redirect_uri:https://my-cool-app.com/oauthcallback&
-grant_type:authorization_code&
-code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
+client_id=aee562d3d6a947efa04438a996f34c80&
+client_secret=7fb9eec31b7d45ffaeb9398b93454cfd&
+redirect_uri=https://my-cool-app.com/oauthcallback&
+grant_type=authorization_code&
+code=c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
 <p><i>Line breaks for readability of form fields</i></p>
 
 
@@ -206,7 +207,10 @@ code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
                     <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
 
                     <h4>Code examples</h4>
-                    <p>An example server-side web app in node.js is listed on the <a href="rest.html">REST API</a> page with its source code on <a href="https://github.com/circuit/webserver-example" target="_blank">github</a>.</p>
+                    <ul>
+                    <li>Simple server-side web app in node.js is listed on the <a href="rest.html">REST API</a> page with its source code on <a href="https://github.com/circuit/webserver-example" target="_blank">github</a>.</li>
+                    <li>Server-side node.js web app using <a href="https://www.npmjs.com/package/simple-oauth2" target="_blank">simple-oauth2</a> to handle OAuth flow on <a href="https://github.com/circuit/node-linkify" target="_blank">github</a>. This app also uses the JS SDK to update text messages.</li>
+                    </ul>
                 </div>
 
 
@@ -215,7 +219,7 @@ code:c6153bbf147c1fcc5f05ebbabee2d396</code></pre>
                     <p>The implicit grant type is used for client-side web applications (i.e. applications that run in a web browser), where the client secret confidentiality is not guaranteed. The implicit grant type is also a redirection-based flow but the access token is given to the client-side JavaScript application, so it may be exposed to the user and other applications on the user's device. Also, this flow does not authenticate the identity of the application, and relies on the redirect uri (upon requesting the app) to serve this purpose.</p>
                     <p>The implicit grant type does not support refresh tokens.</p>
 
-                    <p>For more details on Implicit Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.2" target="_blank">rfc6749</a>.</p>
+                    <p>For more details on Implicit Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.2" target="_blank">rfc6749 section 4.2</a>.</p>
 
                     <h4>JavaScript SDK</h4>
                     <p>Rather than implementing this flow manually in your JavaScript application, you might want to use the JS SDK which abstracts this flow for you. Using the JS SDK the logon is as simple as this:</p>
@@ -311,7 +315,7 @@ client.logon()
 
                     <p>The Client Credentials Grant should only be used in a server-side application to keep the secret confidential. The JavaScript SDK also supports this gratn type, but should only be used by server-side node.js applications.</p>
 
-                    <p>For more details on Client Credentials Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.4" target="_blank">rfc6749</a>.</p>
+                    <p>For more details on Client Credentials Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.4" target="_blank">rfc6749 section 4.4</a>.</p>
 
                     <h4>Client Credentials Flow</h4>
                     <p>Since this flow is acting on its own behalf rather than on another user's behalf, this flow is very simple.</p>
@@ -367,9 +371,11 @@ client.logon()
 
                 <div class="row" id="refresh_token">
                     <h3>Refresh Token Flow</h3>
-                    <p>After an access token expires, using it to make a request from the API will result in an "Invalid Token Error". At this point, if a refresh token was included when the original access token was issued, it can be used to request a fresh access token from the authorization server.</p>
+                    <p>After an access token expires, using it to make a request from the API will result in an "Invalid Token Error". At this point, if a refresh token was included when the original access token was issued, it can be used to request a fresh access token from the authorization server. This is only applicable to the Authorization Code Grant.</p>
                     <p>Here is an example POST request, using a refresh token to obtain a new access token:</p>
                     <code>coming soon</code><br><br>
+
+                    <p>For more details on Token Refresh refer to <a href="https://tools.ietf.org/html/rfc6749#section-6" target="_blank">rfc6749 section 6</a>.</p>
 
                 </div>
 
