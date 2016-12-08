@@ -38,17 +38,27 @@
                             <div><a href="#implicit">Implicit Grant</a></div>
                             <div><a href="#client_credentials">Client Credentials Grant</a></div>
                             <div><a href="#refresh_token">Refresh Token Flow</a></div>
+                            <div><a href="#revoke_token">Revoke a Token</a></div>
                         </p>
 
+                        <div class="bs-callout bs-callout-primary">
+                            <p>The <code>client_id</code> and <code>client_secret</code> in the examples shown on this page are invalid. You need to request your own app to get a client_id and optionally client_secret for your domain.</p>
+                        </div>
 
                         <h3>Which OAuth 2.0 grant type do I need?</h3>
                         <p>Is Your app a:</p>
                         <ul>
-                            <li><b>Bot</b>, then you require a <a href="#client_credentials">Client Credentials</a> OAuth app. <a href="#request_client_credentials">Request now</a></li>
+                            <li><b>Bot</b>, then you require a <a href="#client_credentials">Client Credentials</a> OAuth app</li>
                             <li><b>Client-side JavaScript Web App</b>, then you require an <a href="#implicit">Implicit</a> OAuth app</li>
                             <li><b>Server-side Web App</b>, then you require an <a href="#authorization_code">Authorization Code</a> OAuth app</li>
                         </ul>
-                        <p>Read the descriptions below to know what information to provide when requesting an app.</p>
+                        <p>Read the descriptions below for more information on the 3 different grant types.</p>
+
+
+                        <h3>I am ready to register my app</h3>
+                        <p>We are working on an OAuth admin portal, until that is available you need to register your app manually via the following form:</p>
+
+                        <p>coming...</p>
                     </div>
                 </div>
 
@@ -337,6 +347,15 @@ client.logon()
 
                     <h6>Example request:</h6>
                     <pre><code>https://circuitsandbox.net/oauth/authorize?response_type=token&client_id=aee562d3d6a947efa04438a996f34c80&client_secret=7fb9eec31b7d45ffaeb9398b93454cfd&scope=READ_USER_PROFILE,READ_CONVERSATIONS&state=fa04438a996f</code></pre>
+                
+                    <h6>Example successful response:</h6>
+                    <pre><code>{"access_token":"a542f71d785d40b9924c8d07b518629a","token_type":"Bearer","scope":["READ_USER_PROFILE","READ_CONVERSATIONS"]}</code></pre>
+
+                    <p>With the obtained token the application can perform API calls.</p>
+                    <p>For REST API calls, the OAuth access token (aka Bearer token) should be included in the HTTP Authorization header.</p>
+
+                    <h6>Example curl request to fetch the applications conversations:</h6>
+                    <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
 
                 </div>
 
@@ -346,9 +365,20 @@ client.logon()
                     <h3>Refresh Token Flow</h3>
                     <p>After an access token expires, using it to make a request from the API will result in an "Invalid Token Error". At this point, if a refresh token was included when the original access token was issued, it can be used to request a fresh access token from the authorization server.</p>
                     <p>Here is an example POST request, using a refresh token to obtain a new access token:</p>
-                    <code>https://circuitsandbox.net/oauth/...</code><br><br>
+                    <code>coming soon</code><br><br>
 
                 </div>
+
+
+
+                <div class="row" id="revoke_token">
+                    <h3>Revoke a Token</h3>
+                    <p>Users can revoke tokens created on their behalf on their Circuit web client at Settings>Security>Connected Apps</p>
+                    <p>Application can revoke token using the following APIs:</p>
+                    <code>coming soon</code><br><br>
+
+                </div>
+
 
                 <div class="row" style="height:1000px">
                     <!-- leave some room for anchors to jump to the right place -->
