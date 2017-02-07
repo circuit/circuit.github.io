@@ -354,8 +354,16 @@ client.logon()
                     </table>
 
                     <h6>Example request:</h6>
-                    <pre><code>https://circuitsandbox.net/oauth/authorize?response_type=token&client_id=aee562d3d6a947efa04438a996f34c80&client_secret=7fb9eec31b7d45ffaeb9398b93454cfd&scope=READ_USER_PROFILE,READ_CONVERSATIONS&state=fa04438a996f</code></pre>
-                
+                    <pre><code>POST /oauth/token HTTP/1.1
+Host: circuitsandbox.net
+Content-Type: application/x-www-form-urlencoded
+
+client_id=aee562d3d6a947efa04438a996f34c80&
+client_secret=7fb9eec31b7d45ffaeb9398b93454cfd&
+grant_type=client_credentials&
+scope=READ_USER_PROFILE</code></pre>
+<p><i>Line breaks for readability of form fields</i></p>
+
                     <h6>Example successful response:</h6>
                     <pre><code>{"access_token":"a542f71d785d40b9924c8d07b518629a","token_type":"Bearer","scope":["READ_USER_PROFILE","READ_CONVERSATIONS"]}</code></pre>
 
