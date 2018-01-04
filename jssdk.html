@@ -74,16 +74,60 @@ client.logon()
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="https://jsbin.com/posoko/" target="_blank">Direct call</a></td>
-                                    <td>Start a direct call with another Circuit user. Toggle own video and ability to enable HD Video.</td>
+                                    <td><a href="https://output.jsbin.com/qiqewe" target="_blank">List conversations, threads and comments. Define injectors.</a></td>
+                                    <td>Retrieve 25 most recent conversations and display them in the left more list. When selecting a conversation, retrieve their 50 most recent threads and show them in the middle list. When selecting a thread, then show the 20 most recent comments in the right list. Defines conversationInjector and itemInjector.</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="https://output.jsbin.com/qiqewe" target="_blank">Retrieve Threads and Comments</a></td>
-                                    <td>Retrieve 25 most recent conversations and display them in a list. When selecting a conversation, retrieve their 50 most recent threads and display them in a list. When selecting a thread, show the 20 most recent comments.</td>
+                                    <td><a href="https://output.jsbin.com/waduvos" target="_blank">Moderate & EnableGuestAccess on conversation</a></td>
+                                    <td>Retrieve 10 most recent conversations, display them and allow functions on them such as disable guest access, moderate etc...</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/keyoleg" target="_blank">Get Conversation by a filter (e.g. label)</a></td>
+                                    <td>Retrieves the labels and upon selecting a label retrieves the converations using that label.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/vejere" target="_blank">Moderation</a></td>
+                                    <td>Creates a conversation, turns on moderation and grants other user moderator rights.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/dudalo" target="_blank">Update own user profile</a></td>
+                                    <td>Update firstname, lastname and email of local user.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/kawuwul" target="_blank">Set presence</a></td>
+                                    <td>Set different presence states for local user.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/xoluxuh" target="_blank">Search a favorited user using fuzzy search</a></td>
+                                    <td>Starts direct call and allows enabling the whiteboard. Use whiteboard background image and allow drawing SVG shapes.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/pequyo" target="_blank">Get Favorites</a></td>
+                                    <td>Get all favorited conversation IDs, and then filter out the first 5 favorites of direct conversations.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/fudexov" target="_blank">Send post with custom URL</a></td>
+                                    <td>Send a post with a link shown different from the actual URL. Use of option "removeMentionHtml".</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://jsbin.com/posoko/" target="_blank">Direct HD video call & take snapshot</a></td>
+                                    <td>Start a direct call with another Circuit user. Toggle own video and ability to enable HD Video. Take a snapshot image of video with two options to download image.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="https://output.jsbin.com/masobut" target="_blank">Create conference bridge</a></td>
                                     <td>Create a new conversation for a conference bridge, gets the conference details and waits for participants to join. Once other participants join the audio conference is established. No video in this example.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/runifuq" target="_blank">Upgrade Direct Call to Conference</a></td>
+                                    <td>Start a direct call with another Circuit user, then add a 3rd user which automatically creates a group conversation and moves the call to the new conversation.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/rasanum" target="_blank">Select media devices for call</a></td>
+                                    <td>Set the mic, camera, headset, etc for the call. Also supports changing the device during the call.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/wuniwec" target="_blank">Switch front/back camera</a></td>
+                                    <td>Start a direct call with another Circuit user, then switch between different local video inputs (cameras). E.g. front/back on mobile device.</td>
                                 </tr>
                                 <tr>
                                     <td><a href="https://output.jsbin.com/duxahi" target="_blank">Disable remote audio</a></td>
@@ -98,10 +142,6 @@ client.logon()
                                     <td>Demonstrates the telephony APIs. Answer a telephony (ATC/UTC) call, move call to another device, pull call back, listen to telephony events.</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="https://output.jsbin.com/vejere" target="_blank">Moderation</a></td>
-                                    <td>Creates a conversation, turns on moderation and grants other user moderator rights.</td>
-                                </tr>
-                                <tr>
                                     <td><a href="https://output.jsbin.com/medepa" target="_blank">Join a conference on a different device</a></td>
                                     <td>Find started conferences in conversations user is a member of and list them. Then allow user to join one of the conferences on another of the user's devices.</td>
                                 </tr>
@@ -114,12 +154,16 @@ client.logon()
                                     <td>Start a direct call with a user initiated on one of your other devices. Also called Click-2-Call. Opens a new browser tab in case user is not logged on the another web-based client.</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="https://output.jsbin.com/xoluxuh" target="_blank">Search a favorited user using fuzzy search</a></td>
+                                    <td><a href="https://output.jsbin.com/bitubit" target="_blank">Answer a call on different device</a></td>
+                                    <td>Answer a direct call on one of your other devices. Opens a new browser tab in case user is not logged on the another web-based client.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://output.jsbin.com/jeguyah" target="_blank">Whiteboard</a></td>
                                     <td>Search a user by its name using fuse.js for fuzzy search.</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="https://output.jsbin.com/jexizo" target="_blank">OAuth 2.0 Client Credentials Grant</a></td>
-                                    <td>Testing login and auto token renewal for OAuth 2.0 Client Credentials Grant. Client Credentials Grant should ONLY be used by server side applications such as Node.js BOTs.</td>
+                                    <td><a href="https://output.jsbin.com/pugirov" target="_blank">Custom OAuth 2.0 redirect_uri</a></td>
+                                    <td>Define a custom OAuth 2.0 redirect_uri for faster OAuth redirect. This will allow the OAuth popup to only load that redirect_uri page, and not the whole SDK.</td>
                                 </tr>
                             </tbody>
                         </table>
