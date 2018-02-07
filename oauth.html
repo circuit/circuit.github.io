@@ -37,6 +37,7 @@
                             <div><a href="#authorization_code">Authorization Code Grant</a></div>
                             <div><a href="#implicit">Implicit Grant</a></div>
                             <div><a href="#client_credentials">Client Credentials Grant</a></div>
+                            <div><a href="#resource_owner">Resource Owner Password Credentials Grant</a></div>
                             <div><a href="#refresh_token">Refresh Token Flow</a></div>
                             <div><a href="#revoke_token">Revoke a Token</a></div>
                         </p>
@@ -308,7 +309,6 @@ client.logon()
                 </div>
 
 
-
                 <div class="row" id="client_credentials">
                     <h3>Client Credentials Grant</h3>
                     <p>The client credentials grant type provides an application a way to access its own service account. Examples of when this might be useful include Bot applications that can be added as participant in conversations.</p>
@@ -339,6 +339,7 @@ client.logon()
                                 <td><code>client_id</code></td>
                                 <td>The client_id obtained when requesting the OAuth app.</td>
                                 <td>Identifies the client that is making the request. The value passed in this parameter must exactly match the client_id obtained.</td>
+                                <td>Sent in body, or in Authorization Header.</td>
                             </tr>
                             <tr>
                                 <td><code>client_secret</code></td>
@@ -364,6 +365,14 @@ grant_type=client_credentials&
 scope=READ_USER_PROFILE</code></pre>
 <p><i>Line breaks for readability of form fields</i></p>
 
+                    <h6>Example request (client_id and secret in Authorization Header):</h6>
+<pre><code>POST /oauth/token HTTP/1.1
+Host: circuitsandbox.net
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic "btoa(client_id:client_secret)"
+
+grant_type=client_credentials&scope=READ_USER_PROFILE</code></pre>
+
                     <h6>Example successful response:</h6>
                     <pre><code>{"access_token":"a542f71d785d40b9924c8d07b518629a","token_type":"Bearer","scope":["READ_USER_PROFILE","READ_CONVERSATIONS"]}</code></pre>
 
@@ -374,6 +383,83 @@ scope=READ_USER_PROFILE</code></pre>
                     <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
 
                 </div>
+
+
+
+
+                <div class="row" id="resource_owner">
+                    <h3>Resource Owner Password Credentials Grant</h3>
+                    <p>With the resource owner password credentials grant type, the user provides their service credentials (username and password) directly to the application, which uses the credentials to obtain an access token from the service. This grant type should only be enabled on the authorization server if <b>other flows are not viable</b>. Also, it should only be used if the application is <b>trusted</b> by the user (e.g. it is owned by the service, or the user's desktop OS).</p>
+
+                    <p>For more details on Resource Owner Password Credentials Grant refer to <a href="https://tools.ietf.org/html/rfc6749#section-4.3" target="_blank">rfc6749 section 4.3</a>.</p>
+
+                    <h4>Resource Owner Password Credentials Flow</h4>
+                    <p>After the user provides credentials to the application, the application requests an access token from the authorization server using a POST request.</p>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>grant_type</code></td>
+                                <td><code>password</code></td>
+                                <td>Causes the Circuit endpoint to return an access token for the provided credentials and client_id.</td>
+                            </tr>
+                            <tr>
+                                <td><code>scope</code></td>
+                                <td>Comma-delimited set of permissions that the application requests.</td>
+                                <td>The values passed in this parameter are listed on the consent screen that is shown to the user. Supported scopes are: <code>ALL, READ_USER_PROFILE, WRITE_USER_PROFILE, READ_CONVERSATIONS, WRITE_CONVERSATIONS, READ_USER, CALLS</code>. Sent in formdata of body</td>
+                            </tr>
+                            <tr>
+                                <td><code>username</code></td>
+                                <td>The username (email) of the Circuit user</td>
+                                <td>Sent in formdata of body.</td>
+                            </tr>
+                            <tr>
+                                <td><code>password</code></td>
+                                <td>The password of the Circuit user.</td>
+                                <td>Sent in formdata of body.</td>
+                            </tr>
+                            <tr>
+                                <td><code>client_id</code></td>
+                                <td>The client_id obtained when requesting the OAuth app.</td>
+                                <td>Identifies the client that is making the request. The value passed in this parameter must exactly match the client_id obtained. <br>Sent in Authorization Header as Basic Authentication (base64 encoded), either by itself or together with client_secret.</td>
+                            </tr>
+                            <tr>
+                                <td><code>client_secret</code></td>
+                                <td>Require if the client_secret was obtained when requesting the OAuth app, otherwise client_secret is omitted.</td>
+                                <td>Sent in Authorization Header as Basic Authentication (base64 encoded). Only applicable if application was requested with client_secret.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h6>Example request:</h6>
+                    <pre><code>POST /oauth/token HTTP/1.1
+Host: circuitsandbox.net
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic "btoa(client_id:client_secret)"
+
+username=roger.urscheler@atos.net&password=P@ssw0rd&grant_type=password</code></pre>
+
+                    <h6>Example request using curl with only client_id:</h6>
+                    <pre><code>curl https://circuitsandbox.net/oauth/token --user aee562d3d6a947efa04438a996f34c80 -d 'grant_type=password&username=roger.urscheler@unify.com&password=P@ssw0rd&scope=ALL'</code></pre>
+
+                    <h6>Example successful response:</h6>
+                    <pre><code>{"access_token":"a542f71d785d40b9924c8d07b518629a","token_type":"Bearer","scope":[]}</code></pre>
+
+                    <p>With the obtained token the application can perform API calls.</p>
+                    <p>For REST API calls, the OAuth access token (aka Bearer token) should be included in the HTTP Authorization header.</p>
+
+                    <h6>Example curl request to fetch the applications conversations:</h6>
+                    <pre><code>curl -i "https://circuitsandbox.net/rest/v2/conversations" -H "Authorization: Bearer a542f71d785d40b9924c8d07b518629a"</code></pre>
+
+                </div>
+
 
 
 
