@@ -14,7 +14,7 @@
         if (window.location.host == 'circuit.github.io' && window.location.protocol != 'https:') {
           window.location.protocol = 'https:';
         }
-    </script
+    </script>
 </head>
 <body>
 
@@ -29,13 +29,73 @@
 
                 <!-- Jumbotron Header -->
                 <header class="jumbotron hero-spacer">
-                    <h2>Circuit API examples</h2>
-                    <p>Build amazing real-time apps using Circuit APIs. Extend your site with video conferences, screensharing, or rich text messaging. Or create a bot to enhance the Circuit experience by integrating with third party services.</p>
+                    <h2>Circuit Developer Community</h2>
+                    <p>
+                        Build amazing real-time apps using Circuit APIs.<br>
+                        Extend your site with video conferences, screensharing, or rich text messaging.<br>
+                        Create a bot to enhance the Circuit experience by integrating with third party services.
+                    </p>
                 </header>
+
+                <!-- Getting started -->
+                <div class="getting-started">
+                    <h2>Getting started</h2>
+                    <p>Your application on Circuit in 3 easy steps</p>
+                    <h3><span>1. </span>Setup your environnement</h3>
+                    <ol>
+                        <li>
+                            You will need a private tenant on our Circuit sandbox to freely work on your application in a developement environnement.<br>
+                            If you do not have one yet, <a href="https://yourcircuit.typeform.com/to/d3VDXN" class="_blank">request your sandbox</a> (expect an answer within one business day)
+                        </li>
+                        <li>
+                            Next, <a href="https://yourcircuit.typeform.com/to/sxOjAg" target="_blank">register your application</a> on your sandbox. Make sure to register with the email used in step 1.<br>
+                            If you already had a sandbox, to provide the email of your tenant administrator.
+                        </li>
+                        <li>You are ready, open your IDE of choice ;-)</li>
+                    </ol>
+
+                    <h3><span>2. </span>Build your application</h3>
+                    <ol>
+                        <li>
+                            Browse our portal for code sample applications to help you get started with our API.<br>
+                            We have a wide range of applications to help you going with the most common use cases.
+                        </li>
+                        <li>
+                            Need some help ?<br>
+                            <a href="https://stackoverflow.com/questions/tagged/circuit-sdk" target="_blank">Reach out to the community</a> on Stack Overflow
+                        </li>
+                        <li>
+                            Submit improvements, ideas or report issues directly on our project bug trackers (<a href="https://github.com/circuit/circuit-sdk/issues" target="_blank">JS SDK</a>, <a href="https://github.com/circuit/circuit-ios-sdk/issues" target="_blank">iOS SDK</a>)<br>
+                            We're happy to here from you.
+                        </li>
+                        <li>Once you're done, you can go live</li>
+                    </ol>
+                    <h3><span>3. </span>Go Live</h3>
+                    <ol>
+                        <li>
+                            <a href="https://yourcircuit.typeform.com/to/xMJJQJ" target="_blank">Register your application</a> on our production environnement (expect an answer in two business days).<br>
+                            For security checks, we will ask that you provide your tenant administrator email.
+                        </li>
+                        <li>
+                            Host your application on a domain with SSL, fill in your production API credentials and you are done !
+                        </li>
+                        <li>
+                            If you feel like it, tell us about your app and make it publicly available <br>
+                            We'll make sure to post about it on our portal our blog.
+                        </li>
+                    </ol>
+                </div>
 
 
                 <!-- Page Features -->
-                <div class="row text-center">
+
+                <br><br>
+
+                <div class="text-center">
+
+                    <div class="col-md-12 col-sm-6 hero-feature" style="text-align: left">
+                        <h2>Circuit Application Sample Gallery</h2>
+                    </div>
 
                     <div class="col-md-3 col-sm-6 hero-feature">
                         <a href="/jssdk">
@@ -83,6 +143,7 @@
                                 <div class="caption">
                                     <h3>iOS SDK</h3>
                                     <h5>via CocoaPods</h5>
+                                    <p><br><br><br></p>
                                 </div>
                             </div>
                         </a>
@@ -100,9 +161,9 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-    $(function(){
-      $("#sidebar-wrapper").load("/sidebar.html");
-    });
+        $(function(){
+            $("#sidebar-wrapper").load("/sidebar.html");
+        });
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

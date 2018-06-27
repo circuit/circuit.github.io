@@ -54,22 +54,46 @@
 
 /* Sidebar Styles */
 
+.sidebar-title {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.sidebar-title a,
+.sidebar-title a:hover,
+.sidebar-title a:visited{
+    color: #83c044;
+}
+
+.sidebar-title img.logo {
+    width: 60px;
+    height: 60px;
+}
+
 .sidebar-nav {
-    position: absolute;
-    top: 0;
     width: 250px;
     margin: 0;
     padding: 0;
-    list-style: none;
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+.sidebar-nav li:before {
+    /* Unicode bullet symbol */
+    content: '\25BA ';
+    font-size: 10px;
+    /* Bullet color */
+    color: #83c044;
+    padding-right: 0.5em;
 }
 
 .sidebar-nav li {
     text-indent: 20px;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .sidebar-nav li a {
-    display: block;
     text-decoration: none;
     color: #999999;
 }
@@ -98,6 +122,47 @@
 .sidebar-nav > .sidebar-brand a:hover {
     color: #fff;
     background: none;
+}
+
+/* Jumbotron */
+
+.jumbotron {
+    background-color: #83c044;
+}
+
+.jumbotron h2 {
+    color: white;
+}
+
+/* Getting started */
+
+.getting-started{
+    border: solid 1px #88c541;
+    border-radius: 5px;
+    padding: 30px;
+    font-size: 1.3em;
+}
+
+.getting-started h2 {
+    color: #83c044;
+}
+
+.getting-started h3 span {
+    background-color: #83c044;
+    font-size: 1.3em;
+    padding: 2px 10px 2px 2px;
+    margin-right: 3px;
+    color: white;
+}
+
+.getting-started a,
+.getting-started a:hover,
+.getting-started a:visited {
+    color: #83c044;
+}
+
+.getting-started li {
+    margin-top: 15px;
 }
 
 @media(min-width:768px) {
@@ -135,9 +200,9 @@ pre {
 }
 
 
-.hero-spacer {
+/* .hero-spacer {
     margin-top: 50px;
-}
+} */
 
 .hero-feature {
     margin-bottom: 30px;
