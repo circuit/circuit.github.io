@@ -79,6 +79,11 @@
     list-style-type: none;
 }
 
+#sidebar-wrapper h2 {
+    padding-left: 15px;
+    color: #83c044;
+}
+
 .sidebar-nav li:before {
     /* Unicode bullet symbol */
     content: '\25BA ';
@@ -107,6 +112,11 @@
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
+}
+
+.sidebar-nav li a.current {
+    color: #fff;
+    font-weight: bold;
 }
 
 .sidebar-nav > .sidebar-brand {
