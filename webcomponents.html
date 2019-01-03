@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="Circuit API Examples">
+  <meta name="author" content="Roger Urscheler">
+  <link rel="shortcut icon" type="image/png" href="images/wc.img" />
+  <title>Circuit API Examples</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script>
+    if (window.location.host == 'circuit.github.io' && window.location.protocol != 'https:') {
+      window.location.protocol = 'https:';
+    }
+  </script>
+  <style>
+    xmp {
+      margin: -32px 0px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper"></div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Circuit Web Components</h1>
+            <p>Enhance your website with Circuit features such as making video calls without any code. Just include the
+              desired web component module and the Circuit JS SDK and use the element.</p>
+
+              <a href="https://github.com/circuit/circuit-web-components/" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/github-beta-brightgreen.svg?style=flat" style="max-width:100%;"></a>
+              <a href="https://www.npmjs.com/package/@unify/circuit-web-components" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/9e9e962e3dd15ea5ab11b5f1a15a4c15f0b15c49/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f40756e6966792f636972637569742d7765622d636f6d706f6e656e74732e7376673f7374796c653d666c6174" alt="NPM Version" data-canonical-src="https://img.shields.io/npm/v/@unify/circuit-web-components.svg?style=flat" style="max-width:100%;"></a>
+              <br><br>
+              <a href="https://github.com/circuit/circuit-web-components/tree/master/docs" target="_blank" class="btn btn-default">Documentation</a>
+              <a href="https://cdn.staticaly.com/gh/circuit/circuit-web-components/master/examples/index.html" target="_blank" class="btn btn-default">Live Examples</a><br><br>
+
+            <p>Example <code>circuit-call-button</code>:</p>
+            <pre class="prettyprint">
+              <xmp>
+<html>
+  <head>
+    <script type="module" src="//unpkg.com/@unify/circuit-web-components/circuit-call-button.js" defer></script>
+    <script src="//unpkg.com/circuit-sdk" async></script>
+    <style>
+      /* Hide button until defined to prevent flash rendering */
+      circuit-call-button:not(:defined) {
+        opacity: 0;
+      }
+      circuit-call-button[inprogress] {
+        background: firebrick;
+      }
+    </style>
+  </head>
+  <body>
+    <circuit-call-button
+      clientId="f76ea1b2789946c9b88b008c682c132a"
+      target="helpdesk@company.com">Call Helpdesk</circuit-call-button>
+  </body>
+</html></xmp>
+            </pre>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /#wrapper -->
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script>
+    $(function () {
+      $("#sidebar-wrapper").load("/sidebar.html");
+    });
+
+  </script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-67318539-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+
+</html>
