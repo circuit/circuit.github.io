@@ -39,6 +39,7 @@
                             <div><a href="#client_credentials">Client Credentials Grant</a></div>
                             <!--<div><a href="#resource_owner">Resource Owner Password Credentials Grant</a></div>-->
                             <div><a href="#refresh_token">Refresh Token Flow</a></div>
+                            <div><a href="#renew_token">Renew a Token</a></div>
                             <div><a href="#revoke_token">Revoke a Token</a></div>
                         </p>
 
@@ -56,13 +57,8 @@
                         <p>Read the descriptions in the <a href="#grant_types">OAuth 2.0 Grant Types</a> section for more information on the 3 different grant types supported by Circuit.</p>
 
 
-                        <h3 id="registration">OAuth 2.0 App Registration Form</h3>
-                        <p>We are working on an OAuth admin portal, until that is available you need to register your app using the form below.</p>
-
-                        <!-- Change the width and height values to suit you best -->
-                        <div class="typeform-widget" data-url="https://yourcircuit.typeform.com/to/sxOjAg" data-text="Circuit Sandbox OAuth 2.0 Application Registration" style="width:100%-10px;height:550px;border:solid;border-width:1px"></div>
-                        <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'widget.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
-                        <p><i>For questions or problems with the registration please contact <a href="mailto:roger.urscheler@atos.net">roger.urscheler@atos.net</a></i></p>.
+                        <h3 id="registration">OAuth 2.0 App Registration</h3>
+                        <p>Tenant admninistrator can now create OAuth apps on the Circuit webclient. See <a href="/index.html">Getting Started</a> page for details.</p>
 
                     </div>
                 </div>
@@ -466,21 +462,27 @@ username=roger.urscheler@atos.net&password=P@ssw0rd&grant_type=password</code></
                 <div class="row" id="refresh_token">
                     <h3>Refresh Token Flow</h3>
                     <p>After an access token expires, using it to make a request from the API will result in an "Invalid Token Error". At this point, if a refresh token was included when the original access token was issued, it can be used to request a fresh access token from the authorization server. This is only applicable to the Authorization Code Grant.</p>
-                    <p>Here is an example POST request, using a refresh token to obtain a new access token:</p>
-                    <code>coming soon</code><br><br>
+                    <p>Use REST API. Not available in JS SDK.</p>
 
                     <p>For more details on Token Refresh refer to <a href="https://tools.ietf.org/html/rfc6749#section-6" target="_blank">rfc6749 section 6</a>.</p>
+                </div>
 
+
+
+                <div class="row" id="renew_token">
+                    <h3>Renew token</h3>
+                    <p>The JS SDK allows apps to renew the access token prior to its expiry using the API <code><a href="https://circuitsandbox.net/sdk/classes/Client.html#method_renewToken">renewToken</a></code>.</p>
+                    <p>This is applicable to Implicit and Client Credentials Grant.</p>
+                    <p>For Client Credentials grant the token can also be automatically renewed by setting the configuration parameter <code><a href="https://circuitsandbox.net/sdk/classes/Client.html">autoRenewToken</a></code>.</p>
                 </div>
 
 
 
                 <div class="row" id="revoke_token">
                     <h3>Revoke a Token</h3>
-                    <p>Users can revoke tokens created on their behalf on their Circuit web client at Settings>Security>Connected Apps</p>
-                    <p>Applications can revoke token using the API <code>revokeToken</code></p>
+                    <p>Users can revoke tokens created on their behalf on their Circuit web client at "Settings > Security > Connected Apps".</p>
+                    <p>Applications can revoke token using the JS SDK API  <code><a href="https://circuitsandbox.net/sdk/classes/Client.html#method_revokeToken">revokeToken</a></code>.</p>
                     <br><br>
-
                 </div>
 
 
