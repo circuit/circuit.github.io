@@ -16,11 +16,6 @@
       window.location.protocol = 'https:';
     }
   </script>
-  <style>
-    xmp {
-      margin: -32px 0px;
-    }
-  </style>
 </head>
 
 <body>
@@ -40,7 +35,7 @@
             <p>Enhance your website with Circuit features such as making video calls without any code. Just include the
               desired web component module and the Circuit JS SDK and use the element.</p>
 
-              <a href="https://github.com/circuit/circuit-web-components/" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/github-beta-brightgreen.svg?style=flat" style="max-width:100%;"></a>
+              <a href="https://github.com/circuit/circuit-web-components/" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/github-beta-brightgreen.svg?style=flat" alt="beta" style="max-width:100%;"></a>
               <a href="https://www.npmjs.com/package/@unify/circuit-web-components" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/9e9e962e3dd15ea5ab11b5f1a15a4c15f0b15c49/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f40756e6966792f636972637569742d7765622d636f6d706f6e656e74732e7376673f7374796c653d666c6174" alt="NPM Version" data-canonical-src="https://img.shields.io/npm/v/@unify/circuit-web-components.svg?style=flat" style="max-width:100%;"></a>
               <br><br>
               <a href="https://github.com/circuit/circuit-web-components/tree/master/docs" target="_blank" class="btn btn-default">Documentation</a>
@@ -48,27 +43,26 @@
 
             <p>Example <code>circuit-call-button</code>:</p>
             <pre class="prettyprint">
-              <xmp>
-<html>
-  <head>
-    <script type="module" src="//unpkg.com/@unify/circuit-web-components/circuit-call-button.js" defer></script>
-    <script src="//unpkg.com/circuit-sdk" async></script>
-    <style>
-      /* Hide button until defined to prevent flash rendering */
-      circuit-call-button:not(:defined) {
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="module" src="//unpkg.com/@unify/circuit-web-components/circuit-call-button.js" defer&gt;&lt;/script&gt;
+    &lt;script src="//unpkg.com/circuit-sdk" async&gt;&lt;/script&gt;
+    &lt;style&gt;
+    /* Hide button until defined to prevent flash rendering */
+    circuit-call-button:not(:defined) {
         opacity: 0;
-      }
-      circuit-call-button[inprogress] {
+    }
+    circuit-call-button[inprogress] {
         background: firebrick;
-      }
-    </style>
-  </head>
-  <body>
-    <circuit-call-button
-      clientId="f76ea1b2789946c9b88b008c682c132a"
-      target="helpdesk@company.com">Call Helpdesk</circuit-call-button>
-  </body>
-</html></xmp>
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;circuit-call-button
+    clientId="f76ea1b2789946c9b88b008c682c132a"
+    target="helpdesk@company.com"&gt;Call Helpdesk&lt;/circuit-call-button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
             </pre>
 
           </div>
