@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="Circuit API Examples">
+    <meta name="author" content="Roger Urscheler">
+    <link rel="shortcut icon" type="image/png" href="images/ios-logo.png"/>
+    <title>Circuit API Examples</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+        if (window.location.host == 'circuit.github.io' && window.location.protocol != 'https:') {
+          window.location.protocol = 'https:';
+        }
+    </script>
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper"></div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Interactive Forms</h1>
+                        <p style="font-size: 1.2em">
+                            Using the JS SDK, iOS SDK or Rest API, you can add interactive forms to a Circuit conversation.<br>
+                            With forms, you can add buttons or radio and input fields to your messages. <br>
+                            <br>
+                            <img src="https://raw.githubusercontent.com/circuit/circuit-sdk/master/docs/wiki-images/forms1.png" alt="Interactive Form Example" style="max-width: 600px">
+                            <br><br>
+                            Whether you are developing a bot or an app, you can display the form to the conversation and collect the answers from one or several participants.<br>
+                            You can then decide to update the message based on the user's feedback.<br>
+                        </p>
+                        <p>
+                                <a href="https://github.com/circuit/circuit-sdk/wiki/Forms">The documentation on interactive forms can be found on github.</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script>
+    $(function(){
+      $("#sidebar-wrapper").load("/sidebar.html");
+    });
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-67318539-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
