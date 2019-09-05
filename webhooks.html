@@ -56,8 +56,32 @@
                                 <li>Open the sidebar and click on add an app or the + button</li>
                                 <li>Name your incoming webhook and click on Create</li>
                                 <li>>You will get the incoming webhook URL, copy it to clipboard</li>
-                                <li>You can post to Circuit using this URL <br> <code>curl --insecure -X POST https://yourcircuit.com/rest/v2/webhooks/incoming/1234392e25a0c-c88f-4eab-a27e-f88ccd657d17   -d '{"text": "*bold* `code` _italic_ ~strike~"}'</code></li>
+                                <li>You can post to Circuit using this URL <br> <code>curl --insecure -X POST https://yourcircuit.com/rest/v2/webhooks/incoming/1234392e25a0c-c88f-4eab-a27e-f88ccd657d17   -d '{"text": "This is the content of my post"}'</code></li>
                             </ol>
+                        </p>
+
+                        <p>
+                            <strong>Formatting</strong>
+                            <code>
+                                <xmp>
+    json
+    {
+        "text": "<b>bold</b> <i>italic</i>"
+    }
+                                </xmp>
+                            </code>
+                            <br>
+                            Circuit supports bold, italic and highlited texts. It supports line breaks and ordered and lists with bullet points and numbered items. See the code below for examples : 
+                            <code>
+                                <xmp>
+
+    json
+    {
+        "text" : "Circuit supports <span class='rich-text-highlight'>highlighted text</span> and <br> line breaks. 
+                    It also supports bullet lists and numbered lists with <ul><li>item1</li><li>item2</li></ul> and ><ol><li>item1</li><li>item2</li></ol>."
+    }
+                            </xmp>
+                            </code>
                         </p>
 
                         <p>
