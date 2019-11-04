@@ -116,6 +116,22 @@
                                 <td>Any string</td>
                                 <td>Provides any state that might be useful to your application upon receipt of the response. The Circuit Server roundtrips this parameter, so your application receives the same value it sent. To mitigate against cross-site request forgery (CSRF), it is strongly recommended to include an anti-forgery token in the state, and confirm it in the response. This parameter is not required but strongly recommended for above mentioned security reasons.</td>
                             </tr>
+                            <tr>
+                                <td><code>login_hint</code></td>
+                                <td>email</td>
+                                <td>Optional. If your application knows which user is trying to authenticate, it can use this parameter to provide a hint to the Circuit Authentication Server. The server uses the hint to simplify the login flow by prefilling the email field in the sign-in form.</td>
+                            </tr>
+                            <tr>
+                                <td><code>prompt</code></td>
+                                <td>comma delimited string</td>
+                                <td>Optional. A comma-delimited (no spaces), case-sensitive list of options for the oauth window.
+                                    <ul>
+                                        <li><code>disable_email</code>: Disable email field (only applicable if login_hint is provided)</li>
+                                        <li><code>disable_switch</code>: Disable ability to switch the account from to Oauth popup</li>
+                                        <li><code>disable_caching</code>: Hide the "private computer" checkbox.</li>
+                                    </ul>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -269,6 +285,22 @@ client.logon()
                                 <td><code>state</code></td>
                                 <td>Any string</td>
                                 <td>Provides any state that might be useful to your application upon receipt of the response. The Circuit Server roundtrips this parameter, so your application receives the same value it sent. To mitigate against cross-site request forgery (CSRF), it is strongly recommended to include an anti-forgery token in the state, and confirm it in the response.</td>
+                            </tr>
+                            <tr>
+                                <td><code>login_hint</code></td>
+                                <td>email</td>
+                                <td>Optional. If your application knows which user is trying to authenticate, it can use this parameter to provide a hint to the Circuit Authentication Server. The server uses the hint to simplify the login flow by prefilling the email field in the sign-in form.</td>
+                            </tr>
+                            <tr>
+                                <td><code>prompt</code></td>
+                                <td>comma delimited string</td>
+                                <td>Optional. A comma-delimited (no spaces), case-sensitive list of options for the oauth window.
+                                    <ul>
+                                        <li><code>disable_email</code>: Disable email field (only applicable if login_hint is provided)</li>
+                                        <li><code>disable_switch</code>: Disable ability to switch the account from to Oauth popup</li>
+                                        <li><code>disable_caching</code>: Hide the "private computer" checkbox.</li>
+                                    </ul>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
